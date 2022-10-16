@@ -32,7 +32,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/components/index.js", "src/components/index.js", "src/main.js", "src/main.js", "src/style/mixins/config.scss"  ],
   "exclude": [
     "node_modules"
   ]

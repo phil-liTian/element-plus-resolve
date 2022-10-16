@@ -1,0 +1,22 @@
+@use "sass:map";
+@import '@s/mixins/_var.scss';
+@import '@s/common/var.scss';
+
+:root {
+  --el-color-white: '#fff';
+
+  // lt-text-color
+  @each $type in ( primary, regular, secondary, placeholder ) {
+    @include set-css-var-type('text-color', $type, $--text-color);
+  }
+
+
+  // box-shadow
+  @each $type in (base, light) {
+    @include set-css-var-type('box-shadow', $type, $--box-shadow)
+  }
+
+  // transition
+  --lt-transition-duration: #{map.get($--transition-duration, 'default')};
+  --lt-transition-duration-fast: #{map.get($--transition-duration, 'fast')};
+}

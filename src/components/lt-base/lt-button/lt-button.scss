@@ -1,0 +1,34 @@
+@use 'sass:map';
+@import '@s/common/var.scss';
+@import '@s/mixins/mixins.scss';
+@import '@s/mixins/_button.scss';
+@import '@s/mixins/utils.scss';
+@import '@s/mixins/_var.scss';
+
+
+@include b(button) {
+  @include set-component-css-var('button', $--button);
+  
+  display: inline-block;
+  line-height: 1;
+  cursor: pointer;
+  outline: none;
+  margin: 0;
+  box-sizing: border-box;
+  text-align: center;
+  white-space: nowrap;
+  min-height: map.get($--input-height, 'default');
+  background-color: map.get($--button, 'background-color');
+  color: map.get($--button, 'font-color');
+  @include utils-user-select(none);
+
+  @include button-size(
+    map.get($--button-padding-vertical, 'default'),
+    map.get($--button-padding-horizational, 'default'),
+    map.get($--button-font-size, 'default'),
+    map.get($--button-border-radius, 'default'),
+  );
+
+  
+}
+

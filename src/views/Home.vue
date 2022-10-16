@@ -1,18 +1,29 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div>
+    <!-- <CardTest></CardTest> -->
+    <ResultTest></ResultTest>
+    <!-- <ButtonTest></ButtonTest> -->
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-
+import { defineComponent } from "@vue/runtime-core";
+// import CardTest from "@c/card-test.vue";
+// import ButtonTest from "@c/button-test.vue";
+import ResultTest from "@c/result-test.vue";
 export default defineComponent({
   name: "Home",
+
   components: {
-    HelloWorld,
+    // CardTest,
+    ResultTest,
+    // ButtonTest,
+  },
+
+  setup() {
+    return {};
   },
 });
 </script>
+
+<style lang="scss"></style>

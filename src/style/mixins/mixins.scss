@@ -1,0 +1,42 @@
+@import './config.scss';
+
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+// BEM
+@mixin b($block) {
+  $B: $namespace + '-' + $block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+
+@mixin e($element) {
+  $E: $element !global;
+  $currentSelector: '';
+  $selector: &;
+
+  // $element 可以是一个数组，这里是数组的集合
+  @each $unit in $element {
+    $currentSelector: #{ $currentSelector + 
+      '.' + 
+      $B + 
+      $element-separator + 
+      $unit + 
+      ','
+    };
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}

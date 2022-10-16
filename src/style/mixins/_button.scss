@@ -1,0 +1,7 @@
+
+// 处理按钮大小尺寸
+@mixin button-size($padding-vertical, $padding-horizational, $font-size, $border-radius) {
+  padding: $padding-vertical $padding-horizational;  
+  font-size: $font-size;
+  border-radius: $border-radius;
+}

@@ -1,0 +1,14 @@
+@use "sass:map";
+
+// 处理基础字体样式
+@mixin set-css-var-type($name, $type, $--variables) {
+  --lt-#{$name}-#{$type}: #{map.get($--variables, $type)};
+}
+
+
+// 处理所有组件基础样式
+@mixin set-component-css-var($name, $--variables) {
+  @each $attribute, $value in $--variables {
+    --lt-#{$name}-#{$attribute}: #{$value};
+  }
+}
