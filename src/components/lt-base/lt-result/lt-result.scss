@@ -1,12 +1,56 @@
+@use "sass:map";
 @import '@s/mixins/mixins';
+@import '@s/mixins/_var';
+@import '@s/common/var';
+@import '@s/mixins/utils';
 
+$types: success, warning, error, info, danger;
 
 @include b(result) {
+  @include set-component-css-var('result', $--result);
+  @include flexCenter(column);
+  text-align: center;
+  box-sizing: border-box;
+  padding: var(--lt-result-padding);
 
   @include e(icon) {
     svg {
-      width: 20px;
-      height: 20px;
+      width: var(--lt-result-icon-font-size);
+      height: var(--lt-result-icon-font-size);
+    }
+  }
+
+  @include e(title) {
+    margin-top: var(--lt-result-title-margin-top);
+
+    p {
+      margin: 0;
+      font-size: var(--lt-result-title-font-size);
+      color: var(--lt-text-color-primary);
+      line-height: 1.3;
+    }
+  }
+
+  @include e(subtitle) {
+    margin-top: var(--lt-result-subtitle-margin-top);
+
+    p {
+      margin: 0;
+      font-size: var(--lt-font-size-base);
+      color: var(--lt-text-color-regular);
+      line-height: 1.3;
+    }
+  }
+
+  @include e(extra) {
+    margin-top: var(--lt-result-extra-margin-top);
+  }
+
+  // 在这里处理不同icon的颜色
+  @each $type in $types {
+    .icon-#{$type} {
+      --lt-result-color: var(--lt-color-#{$type});
+      fill: var(--lt-result-color)
     }
   }
 }

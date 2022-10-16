@@ -16,6 +16,11 @@
     @include set-css-var-type('box-shadow', $type, $--box-shadow)
   }
 
+  // 基础颜色
+  @each $type in (success, danger, info, warning, error) {
+    @include set-css-color-type($type)
+  }
+
   // transition
   --lt-transition-duration: #{map.get($--transition-duration, 'default')};
   --lt-transition-duration-fast: #{map.get($--transition-duration, 'fast')};

@@ -11,7 +11,9 @@
     </el-result>
 
     <lt-result icon="success" title="phil" subtitle="subPhil">
-      <template #extra>123</template>
+      <template #extra>
+        <el-button type="primary">Back</el-button>
+      </template>
     </lt-result>
   </div>
 </template>

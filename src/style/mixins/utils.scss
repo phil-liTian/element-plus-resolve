@@ -1,6 +1,14 @@
-
+// 用户选中状态
 @mixin utils-user-select($value) {
   -moz-user-select: $value;
   -webkit-user-select: $value;
   -ms-user-select: $value;
+}
+
+// flex居中布局
+@mixin flexCenter($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
 }

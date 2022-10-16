@@ -1,4 +1,5 @@
 @use "sass:map";
+@import '@s/common/var';
 
 // 处理基础字体样式
 @mixin set-css-var-type($name, $type, $--variables) {
@@ -11,4 +12,11 @@
   @each $attribute, $value in $--variables {
     --lt-#{$name}-#{$attribute}: #{$value};
   }
+}
+
+// 处理基础颜色
+@mixin set-css-color-type($type) {
+  --lt-color-#{$type}: #{map.get($--colors, $type, 'base')};
+  --lt-color-#{$type}-light: #{map.get($--colors, $type, 'light-8')};
+  --lt-color-#{$type}-lighter: #{map.get($--colors, $type, 'light-9')};
 }
