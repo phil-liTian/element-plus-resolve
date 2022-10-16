@@ -91,6 +91,18 @@ $--box-shadow: map.merge(
   $--box-shadow
 );
 
+$--border-radius: () !default;
+
+$--border-radius: map.merge(
+  (
+    'base': 4px,
+    "small": 2px,
+    'round': 20px,
+    'circle': 100%
+  ),
+  $--border-radius
+);
+
 $--color-white: map.get($--colors, 'white') !default;
 
 // button
@@ -98,9 +110,50 @@ $--button: () !default;
 $--button: map.merge(
   (
     'background-color': var(--el-color-white),
-    'font-color': var(--lt-text-color-regular)
+    'font-color': var(--lt-text-color-regular),
+    'border-color': var(--lt-border-color-base),
+    'font-weight': var(--lt-font-weight-primary),
   ),
   $--button
+);
+
+$--button-font-color: () !default;
+$--button-background-color: () !default;
+$--button-border-color: () !default;
+
+
+@each $type in $--types {
+  $--button-font-color: map.merge(
+    (
+      $type: map.get($--colors, 'white'),
+    ),
+    $--button-font-color
+  );
+
+  $--button-background-color: map.merge(
+    (
+      $type: map.get($--colors, $type, 'base'),
+    ),
+    $--button-background-color
+  );
+
+  $--button-border-color: map.merge(
+    (
+      $type: map.get($--colors, $type, 'base')
+    ),
+    $--button-border-color
+  )
+}
+
+$--button-border-radius: () !default;
+$--button-border-radius: map.merge(
+  (
+    'default': var(--lt-border-radius-base),
+    'medium': var(--lt-border-radius-base),
+    'small': calc(var(--lt-border-radius-base) - 1px),
+    'mini': calc(var(--lt-border-radius-base) - 1px),
+  ),
+  $--button-border-radius
 );
 
 // 水平方向

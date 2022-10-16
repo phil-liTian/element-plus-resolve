@@ -1,7 +1,9 @@
 <template>
   <div>
     <el-button @click="onClick" type="primary">Primary</el-button>
-    <lt-button @click="handleClick">phil</lt-button>
+    <lt-button type="info" size="medium" @click="handleClick"
+      >phil todo</lt-button
+    >
   </div>
 </template>
 

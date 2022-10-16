@@ -18,8 +18,12 @@
   text-align: center;
   white-space: nowrap;
   min-height: map.get($--input-height, 'default');
-  background-color: map.get($--button, 'background-color');
-  color: map.get($--button, 'font-color');
+  background-color: var(--lt-button-background-color, #{map.get($--button, 'background-color')});
+  color: var(--lt-button-font-color, #{map.get($--button, 'font-color')});
+  transition: .1s;
+  font-weight: var(--lt-button-font-weight);
+  border: var(--lt-border-base);
+  border-color: var(--lt-button-border-color, map.get($--button, 'font-color'));
   @include utils-user-select(none);
 
   @include button-size(
@@ -29,6 +33,26 @@
     map.get($--button-border-radius, 'default'),
   );
 
-  
+  @each $type in (primary, success, danger, info, warning) {
+    @include m($type) {
+      --lt-button-font-color: #{map.get($--button-font-color, $type)};
+      --lt-button-background-color: #{map.get($--button-background-color, $type)};
+      --lt-button-border-color: #{map.get($--button-border-color, $type)};
+
+      // hover、focus等状态
+      @include button-variant($type);
+    }
+  }
+
+  @each $size in (small, medium, mini) {
+    @include m($size) {
+      @include button-size(
+        map.get($--button-padding-vertical, $size),
+        map.get($--button-padding-horizational, $size),
+        map.get($--button-font-size, $size),
+        map.get($--button-border-radius, $size),
+      );
+    }
+  }
 }
 

@@ -4,6 +4,9 @@
 
 :root {
   --el-color-white: '#fff';
+  --lt-font-weight-primary: 500;
+  --lt-border-base: var(--lt-border-width-base) var(--lt-border-style-base)
+  var(--lt-border-color-base);
 
   // lt-text-color
   @each $type in ( primary, regular, secondary, placeholder ) {
@@ -14,6 +17,16 @@
   // box-shadow
   @each $type in (base, light) {
     @include set-css-var-type('box-shadow', $type, $--box-shadow)
+  }
+
+  // border-color
+  @each $type in (base, light, lighter, extra-light) {
+    @include set-css-var-type('border-color', $type, $--border-color)
+  }
+
+  // border-radius
+  @each $size in (base, small, round, circle) {
+    @include set-css-var-type('border-radius', $size, $--border-radius)
   }
 
   // 基础颜色

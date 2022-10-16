@@ -1,5 +1,5 @@
 import type { PropType } from "vue";
-// import { isValidateComponentSize } from "@u/validator.js";
+import { isValidateComponentSize } from "@u/validator.ts";
 
 type IButtonType = PropType<
   "primary" | "default" | "success" | "warning" | "info" | "text" | "danger"
@@ -37,6 +37,8 @@ export const props = {
   size: {
     type: String as PropType<ComponentSize>,
     default: "small",
-    // validator: isValidateComponentSize,
+    validator: isValidateComponentSize,
   },
+
+  disabled: Boolean,
 };
