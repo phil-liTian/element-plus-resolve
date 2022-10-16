@@ -1,6 +1,7 @@
 @use "sass:map";
 @import '../mixins/config.scss';
 
+$--types: primary, success, warning, danger, info, error;
 
 // 基础样式
 // color
@@ -171,6 +172,28 @@ $--result: map.merge(
   ),
   $--result
 );
+
+// tag
+$--tag: () !default;
+$--tag: map.merge(
+  (
+    "font-size": 12px,
+    "border-radius": 4px,
+    "padding": 0 10px
+  ),
+  $--tag
+);
+
+$--tag-color: () !default;
+
+@each $type in $--types {
+  $--tag-color: map.merge(
+    (
+      $type: map.get($--colors, $type, 'base')
+    ),
+    $--tag-color
+  );
+}
 
 // transition
 $--transition-duration: () !default;

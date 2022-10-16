@@ -1,0 +1,120 @@
+@use "sass:map";
+@import '@s/common/var';
+@import '@s/mixins/mixins';
+@import '@s/mixins/_var';
+
+@mixin genTheme(
+  $backgroundColorWeight,
+  $borderColorWeight,
+  $fontColorWeight,
+  $hoverColorWeight
+) {
+  --lt-tag-background-color: #{
+    mix(
+      map.get($--tag-color, 'primary'),
+      $--color-white,
+      $backgroundColorWeight,
+    )
+  };
+
+  --lt-tag-border-color: #{mix(
+      map.get($--tag-color, 'primary'),
+      $--color-white,
+      $borderColorWeight
+    )};
+
+  --lt-tag-font-color: #{mix(
+      map.get($--tag-color, 'primary'),
+      $--color-white,
+      $fontColorWeight
+    )};
+
+  --lt-tag-hover-color: #{mix(
+      map.get($--tag-color, 'primary'),
+      $--color-white,
+      $hoverColorWeight
+    )};
+
+  background-color: var(--lt-tag-background-color);
+  border-color: var(--lt-tag-border-color);
+  color: var(--lt-tag-font-color);
+
+  @include when(hit) {
+    border-color: map.get($--tag-color, 'primary');
+  }
+
+  @each $type in $--types {
+    &.lt-tag--#{$type} {
+      --lt-tag-background-color: #{
+        mix(
+          map.get($--tag-color, $type),
+          $--color-white,
+          $backgroundColorWeight,
+        )
+      };
+    
+      --lt-tag-border-color: #{mix(
+          map.get($--tag-color, $type),
+          $--color-white,
+          $borderColorWeight
+        )};
+    
+      --lt-tag-font-color: #{mix(
+          map.get($--tag-color, $type),
+          $--color-white,
+          $fontColorWeight
+        )};
+    
+      --lt-tag-hover-color: #{mix(
+          map.get($--tag-color, $type),
+          $--color-white,
+          $hoverColorWeight
+        )};
+
+      @include when(hit) {
+        border-color: map.get($--tag-color, $type)
+      }
+    }
+  }
+}
+
+@include b(tag) {
+  @include set-component-css-var('tag', $--tag);
+  @include genTheme(10%, 20%, 100%, 100%);
+
+  display: inline-block;
+  height: 32px;
+  padding: var(--lt-tag-padding);
+  font-size: var(--lt-tag-font-size);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: var(--lt-tag-border-radius);
+  box-sizing: border-box;
+  white-space: nowrap;
+  line-height: 30px;
+
+  @include m(plain) {
+    @include genTheme(0, 40%, 100%, 100%)
+  }
+
+  @include m(dark) {
+    @include genTheme(100%, 100%, 0%, 80%)
+  }
+
+  @include m(medium) {
+    height: 28px;
+    line-height: 26px;
+  }
+
+  @include m(small) {
+    height: 24px;
+    line-height: 22px;
+    padding: 0 8px;
+  }
+
+  @include m(mini) {
+    height: 20px;
+    line-height: 19px;
+    padding: 0 5px;
+  }
+}

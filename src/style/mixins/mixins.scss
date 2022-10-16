@@ -40,3 +40,25 @@
     }
   }
 }
+
+@mixin m($modifier) {
+  $currentSelector: '';
+  $selector: &;
+
+  // $element 可以是一个数组，这里是数组的集合
+  @each $unit in $modifier {
+    $currentSelector: #{ $currentSelector + 
+      '.' + 
+      $B + 
+      $modifier-separator + 
+      $unit + 
+      ','
+    };
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
