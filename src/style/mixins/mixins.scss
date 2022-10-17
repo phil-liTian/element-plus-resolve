@@ -48,8 +48,7 @@
   // $element 可以是一个数组，这里是数组的集合
   @each $unit in $modifier {
     $currentSelector: #{ $currentSelector + 
-      '.' + 
-      $B + 
+      $selector + 
       $modifier-separator + 
       $unit + 
       ','

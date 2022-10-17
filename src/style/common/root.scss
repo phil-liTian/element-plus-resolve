@@ -3,7 +3,8 @@
 @import '@s/common/var.scss';
 
 :root {
-  --el-color-white: '#fff';
+  --lt-color-white: #fff;
+  --lt-color-primary: #409eff;
   --lt-font-weight-primary: 500;
   --lt-border-base: var(--lt-border-width-base) var(--lt-border-style-base)
   var(--lt-border-color-base);
@@ -12,7 +13,6 @@
   @each $type in ( primary, regular, secondary, placeholder ) {
     @include set-css-var-type('text-color', $type, $--text-color);
   }
-
 
   // box-shadow
   @each $type in (base, light) {
@@ -27,6 +27,11 @@
   // border-radius
   @each $size in (base, small, round, circle) {
     @include set-css-var-type('border-radius', $size, $--border-radius)
+  }
+
+  // font-size
+  @each $type in (extra-large, large, medium, base, small, extra-small) {
+    @include set-css-var-type('font-size', $type, $--font-size)
   }
 
   // 基础颜色

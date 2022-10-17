@@ -6,7 +6,7 @@ $--types: primary, success, warning, danger, info, error;
 // 基础样式
 // color
 $--colors: () !default;
-$--colors: map.merge(
+$--colors: map.deep-merge(
   (
     'white': #fff,
     'black': #000,
@@ -31,6 +31,8 @@ $--colors: map.merge(
   ),
   $--colors
 );
+
+$--color-primary: map.get($--colors, 'primary', 'base');
 
 $--border-color: () !default;
 $--border-color: map.merge(
@@ -246,7 +248,22 @@ $--tag-color: () !default;
     ),
     $--tag-color
   );
-}
+};
+
+// switch
+$--switch: () !default;
+$--switch: map.merge(
+  (
+    'on-color': var(--lt-color-primary),
+    'off-color': var(--lt-border-color-base),
+    'font-size': var(--lt-font-size-base),
+    'core-border-radius': 10px,
+    'width': 40px,
+    'height': 20px,
+    'button-size': 16px,
+  ),
+  $--switch
+);
 
 // transition
 $--transition-duration: () !default;

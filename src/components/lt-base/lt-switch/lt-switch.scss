@@ -1,0 +1,94 @@
+@import '@s/common/var.scss';
+@import '@s/mixins/mixins.scss';
+@import '@s/mixins/_var.scss';
+@import '@s/mixins/utils.scss';
+
+
+@include b(switch) {
+  @include set-component-css-var('switch', $--switch);
+  position: relative;
+
+  @include e(input) {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    margin: 0;
+  }
+
+  @include e(core) {
+    position: relative;
+    display: inline-block;
+    width: var(--lt-switch-width);
+    height: var(--lt-switch-height);
+    background: var(--lt-switch-off-color);
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    border-radius: var(--lt-switch-core-border-radius);
+    border: 1px solid var(--lt-switch-off-color);
+    cursor: pointer;
+    vertical-align: middle;
+
+    @include e(action) {
+      @include flexCenter();
+      position: absolute;
+      left: 1px;
+      top: 1px;
+      width: var(--lt-switch-button-size);
+      height: var(--lt-switch-button-size);
+      border-radius: var(--lt-border-radius-circle);
+      background-color: var(--lt-color-white);
+      // 加过渡效果
+      transition: all var(--lt-transition-duration);
+    }
+  }
+
+  @include e(label) {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: var(--lt-switch-font-size);
+    color: var(--lt-text-color-primary);
+    font-weight: 500;
+
+    @include when(active) {
+      color: var(--lt-color-primary);
+    }
+
+    @include m(left) {
+      margin-right: 10px;
+    }
+
+    @include m(right) {
+      margin-left: 10px;
+    }
+
+    &* {
+      line-height: 1;
+      display: inline-block;
+      font-size: var(--lt-switch-font-size);
+    }
+  }
+
+  @include when(checked) {
+    .lt-switch__core {
+      border-color: var(--lt-switch-on-color);
+      background-color: var(--lt-switch-on-color);
+
+      .lt-switch__action {
+        left: 100%;
+        margin-left: calc(0px - var(--lt-switch-button-size) - 1px);
+        color: var(--lt-switch-on-color);
+      }
+    }
+  }
+
+  @include when(disabled) {
+    .lt-switch__core,
+    .lt-switch__action {
+      cursor: not-allowed;
+      opacity: .6;
+    }
+  }
+}
