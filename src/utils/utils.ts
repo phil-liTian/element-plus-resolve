@@ -1,12 +1,12 @@
-// import { getCurrentInstance } from "vue";
+import { getCurrentInstance } from "vue";
 
 // 获取全局配置
 export function useGlobalConfig(): any {
-  // const vm: any = getCurrentInstance();
+  const vm: any = getCurrentInstance();
 
-  // if ("$ELEMENT" in vm.proxy) {
-  //   return vm.proxy.$ELEMENT;
-  // }
+  if ("$ELEMENT" in vm.proxy) {
+    return vm.proxy.$ELEMENT;
+  }
 
   return {};
 }
