@@ -1,0 +1,70 @@
+@use "sass:map";
+@import '@s/mixins/mixins';
+@import '@s/mixins/_var.scss';
+@import '@s/common/var.scss';
+
+
+@include b(message) {
+  @include set-component-css-var(message, $--message);
+
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  // min-width: var(--lt-message-min-width);
+  background-color: var(--lt-message-background-color);
+  padding: var(--lt-message-padding);
+  box-sizing: border-box;
+  border-radius: var(--lt-border-radius-base);
+  border-width: var(--lt-border-width-base);
+  border-style: var(--lt-border-style-base);
+  border-color: var(--lt-border-color-lighter);
+  overflow: hidden;
+  width: fit-content;
+  transition: opacity .3s, transform .4s, top .4s;
+
+  @include when(center) {
+    justify-content: center;
+  }
+
+  @include m(info) {
+    .lt-message-content {
+      // color: var(--lt-text-color-);
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  @include e(content) {
+    padding: 0;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  @each $type in ( error, info, warning, success ) {
+    @include m($type) {
+      // --lt-message-background-color: var(map.get($--colors, $type, 'light-9'));
+      background-color: map.get($--colors, $type, 'light-9');
+      border-color: map.get($--colors, $type, 'light-8');
+
+      --lt-message-font-color: var(--lt-color-#{$type});
+
+      .lt-message__content {
+        color: var(--lt-message-font-color);
+      }
+    }
+  }
+
+
+}
+
+
+.lt-message-fade-enter-from,
+.lt-message-fade-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -100%);
+}

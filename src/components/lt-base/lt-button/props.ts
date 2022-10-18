@@ -20,7 +20,7 @@ export interface IButtonProps {
 export const props = {
   type: {
     type: String as IButtonType,
-    default: "default",
+    default: "primary",
     validator: (val: string) => {
       return [
         "primary",

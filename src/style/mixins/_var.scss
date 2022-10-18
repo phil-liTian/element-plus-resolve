@@ -20,3 +20,4 @@
   --lt-color-#{$type}-light: #{map.get($--colors, $type, 'light-8')};
   --lt-color-#{$type}-lighter: #{map.get($--colors, $type, 'light-9')};
 }
+

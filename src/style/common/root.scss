@@ -24,6 +24,9 @@
     @include set-css-var-type('border-color', $type, $--border-color)
   }
 
+  --lt-border-width-base: $--border-width-base;
+  --lt-border-style-base: $--border-style-base;
+
   // border-radius
   @each $size in (base, small, round, circle) {
     @include set-css-var-type('border-radius', $size, $--border-radius)
