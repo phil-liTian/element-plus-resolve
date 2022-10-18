@@ -1,0 +1,79 @@
+@use "sass:map";
+@import '@s/common/var.scss';
+@import '@s/mixins/mixins';
+@import "@s/mixins/_var.scss";
+
+@include b(link) {
+  @include set-component-css-var('link', $--link)
+}
+
+@include b(link) {
+  // display: inline-flex;
+  // flex-direction: row;
+  // align-items: center;
+  // justify-content: center;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: var(--lt-link-font-size);
+  font-weight: var(--lt-link-font-weight);
+
+  @include when(underline) {
+    &:hover:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 0;
+      border-bottom: 1px solid var(--lt-link-default-active-color);
+    }
+  }
+
+  @include when(disabled) {
+    cursor: not-allowed;
+  }
+
+  &.lt-link--default {
+    color: var(--lt-link-default-font-color);
+
+    &:hover {
+      color: var(--lt-link-default-active-color);
+    }
+
+    &:after {
+      border-color: var(--lt-link-default-active-color);
+    }
+
+    @include when(disabled) {
+      color: var(--lt-link-disabled-font-color);
+    }
+  }
+
+  @each $type in $--types {
+    // --lt-link-font-color: var(--lt-color-#{$type});
+
+    &.lt-link--#{$type} {
+      color: var(--lt-color-#{$type});
+
+      &:hover {
+        color: mix(map.get($--link-font-color, $type), $--color-white, 80%);
+      }
+
+      &:after {
+        border-color: var(--lt-link-font-color);
+      }
+
+      @include when(disabled) {
+        color: mix(map.get($--link-font-color, $type), $--color-white, 50%);
+      }
+
+      @include when(underline) {
+        &:hover::after {
+          border-color: var(--lt-color-#{$type});
+        }
+      }
+    }
+  }
+}
