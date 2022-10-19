@@ -1,5 +1,5 @@
 <template>
-  <transition name="lt-message-fade">
+  <transition name="lt-message-fade" @before-leave="onClose">
     <div
       v-show="visible"
       role="alert"
@@ -26,8 +26,10 @@
 
 <script lang="ts">
 import { computed, defineComponent } from "@vue/runtime-core";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import { props } from "./props";
+import { off, on } from "@u/dom.ts";
+import { EVENT_CODE } from "@u/aria.ts";
 
 export default defineComponent({
   name: "LtMessage",
@@ -41,7 +43,7 @@ export default defineComponent({
     });
 
     const visible = ref(false);
-    let timer = null;
+    let timer: any = null;
 
     const startTimer = () => {
       const { duration } = props;
@@ -63,9 +65,24 @@ export default defineComponent({
       timer = null;
     };
 
+    const keydown = ({ code }: KeyboardEvent) => {
+      if (code === EVENT_CODE.esc) {
+        if (visible.value) {
+          close();
+        }
+      } else {
+        startTimer();
+      }
+    };
+
     onMounted(() => {
       visible.value = true;
       startTimer();
+      on(document, "keydown", keydown);
+    });
+
+    onBeforeUnmount(() => {
+      off(document, "keyup", keydown);
     });
 
     return {

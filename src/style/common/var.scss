@@ -38,7 +38,7 @@ $--color-white: map.get($--colors, 'white') !default;
 
 // 处理带light的颜色样式
 @mixin set-color-type-light($type, $number) {
-  $--colors: map.merge(
+  $--colors: map.deep-merge(
     (
       $type: (
         'light-#{$number}':

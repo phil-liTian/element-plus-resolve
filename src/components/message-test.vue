@@ -2,7 +2,7 @@
   <div>
     <lt-button @click="open">el message</lt-button>
     <br />
-    <lt-button type="info" @click="ltOpen">lt message</lt-button>
+    <lt-button type="success" @click="ltOpen">lt message</lt-button>
 
     <!-- <lt-message type="warning" message="phil message"></lt-message> -->
   </div>
@@ -21,7 +21,7 @@ export default defineComponent({
     const open = () => {
       $message.info({
         message: "this is a message",
-        duration: 0,
+        duration: 1000,
       });
       // ElMessage({
       //   type: "success",
@@ -35,7 +35,7 @@ export default defineComponent({
       //   message: "测试的message",
       // });
 
-      $ltMessage.warning("这是一个自定义的warning");
+      $ltMessage.error("这是一个自定义的error");
     };
     return {
       open,

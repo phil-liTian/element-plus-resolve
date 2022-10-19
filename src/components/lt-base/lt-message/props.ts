@@ -33,4 +33,8 @@ export const props = {
     type: Number,
     default: 3000,
   },
+
+  onClose: {
+    type: Function,
+  },
 };
