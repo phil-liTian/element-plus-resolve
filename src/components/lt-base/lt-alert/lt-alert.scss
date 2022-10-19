@@ -1,0 +1,66 @@
+@use "sass:map";
+@import '@s/common/var';
+@import "@s/mixins/mixins";
+@import "@s/mixins/_var";
+
+@include b(alert) {
+  @include set-component-css-var('alert', $--alert)
+}
+
+@include b(alert) {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--lt-color-white);
+  padding: var(--lt-alert-padding);
+  box-sizing: border-box;
+  margin: 0;
+  opacity: 1;
+  border-radius: var(--lt-alert-border-radius-base);
+  transition: opacity var(--lt-transition-duration-fast);
+
+  .lt-alert__description {
+    font-size: var(--lt-alert-description-font-size);
+  }
+
+  @include when(center) {
+    justify-content: center;
+  }
+
+  @each $type in (success, info, danger, error) {
+    @include m($type) {
+      --lt-alert-backgroun-color: #{map.get($--colors, $type, 'light-9')};
+
+      &.is-light {
+        background-color: var(--lt-alert-backgroun-color);
+        color: var(--lt-color-#{$type});
+      }
+
+      &.is-dark {
+        background-color: var(--lt-color-#{$type});
+        color: var(--lt-color-white);
+      }
+    }
+  }
+
+  @include e(title) {
+    font-size: var(--lt-alert-title-font-size);
+    line-height: 18px;
+    @include when(bold) {
+      font-weight: bold;
+    }
+  }
+
+  @include e(closeBtn) {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    cursor: pointer;
+  }
+}
+
+.lt-alert-fade-enter-from,
+.lt-alert-fade-leave-active {
+  opacity: 0;
+}

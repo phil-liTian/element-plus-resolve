@@ -320,6 +320,22 @@ $--link: map.merge(
   $--link
 );
 
+// alert
+$--alert: () !default;
+$--alert: map.merge(
+  (
+    'padding': 8px 16px,
+    'border-radius-base': var(--lt-border-radius-base),
+    'title-font-size': 13px,
+    'description-font-size': 12px,
+    'close-font-size': 12px,
+    'close-customed-font-size': 13px,
+    'icon-size': 16px,
+    'icon-large-size': 28px,
+  ),
+  $--alert
+);
+
 $--link-font-color: () !default;
 
 @each $type in $--types {

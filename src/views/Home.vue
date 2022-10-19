@@ -5,9 +5,10 @@
     <!-- <TagTest></TagTest> -->
     <!-- <ButtonTest></ButtonTest> -->
     <!-- <SwitchTest></SwitchTest> -->
-    <MessageTest></MessageTest>
+    <!-- <MessageTest></MessageTest> -->
     <!-- <DividerTest></DividerTest> -->
     <!-- <LinkTest></LinkTest> -->
+    <AlertTest></AlertTest>
   </div>
 </template>
 
@@ -18,9 +19,10 @@ import { defineComponent } from "@vue/runtime-core";
 // import ResultTest from "@c/result-test.vue";
 // import TagTest from "@c/tag-test.vue";
 // import SwitchTest from "@c/switch-test.vue";
-import MessageTest from "@c/message-test.vue";
+// import MessageTest from "@c/message-test.vue";
 // import DividerTest from "@c/divider-test.vue";
 // import LinkTest from "@c/link-test.vue";
+import AlertTest from "@c/alert-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -30,9 +32,10 @@ export default defineComponent({
     // TagTest,
     // ButtonTest,
     // SwitchTest,
-    MessageTest,
+    // MessageTest,
     // DividerTest,
     // LinkTest,
+    AlertTest,
   },
 
   setup() {
