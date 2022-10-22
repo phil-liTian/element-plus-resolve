@@ -1,0 +1,14 @@
+@import '@s/mixins/mixins';
+@import '@s/mixins/var';
+@import '@s/mixins/_var';
+
+@include b(main) {
+  @include set-component-css-var('main', $--main);
+
+
+  display: block;
+  flex: 1;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: var(--lt-main-padding);
+}
