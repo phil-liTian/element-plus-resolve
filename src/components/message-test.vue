@@ -11,7 +11,6 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import { getCurrentInstance } from "vue";
-import { ElMessage } from "element-plus";
 export default defineComponent({
   name: "MessageTest",
   setup() {

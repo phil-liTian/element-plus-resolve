@@ -22,7 +22,7 @@ interface IPopupManager {
 }
 
 const instances: any = {};
-let zIndex: number;
+let zIndex = 2000;
 
 const PopupManager: IPopupManager = {
   modalFade: false,

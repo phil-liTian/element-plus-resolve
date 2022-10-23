@@ -18,6 +18,13 @@
   z-index: 9999;
   box-sizing: border-box;
   box-shadow: var(--lt-notification-shadow);
+  transition: 
+    opacity var(--lt-transition-duration), 
+    transform var(--lt-transition-duration),
+    left var(--lt-transition-duration),
+    right var(--lt-transition-duration),
+    top var(--lt-transition-duration),
+    bottom var(--lt-transition-duration);
   
   &.right {
     right: 16px;
@@ -25,6 +32,17 @@
 
   &.left {
     left: 16px;
+  }
+
+  @each $type in ( success, info, error, warning ) {
+    --lt-notification--#{$type}: var(--lt-color-#{$type});
+
+    &.lt-notification--#{$type} {
+      .lt-notification__title,
+      .lt-notification__content {
+        color: var(--lt-notification--#{$type});
+      }
+    }
   }
 
   @include e(group) {
@@ -36,6 +54,19 @@
     margin: 0;
     font-size: var(--lt-notification-title-font-size);
     color: var(--lt-notification-title-color);
+    margin: 0;
+  }
+
+  @include e(content) {
+    margin: 6px 0 0 0;
+    font-size: var(--lt-notification-content-font-size);
+    color: var(--lt-notification-content-color);
+    text-align: justify;
+    line-height: 24px;
+
+    p {
+      margin: 0;
+    }
   }
 
   @include e(closeBtn) {
@@ -50,4 +81,20 @@
       color: var(--lt-notification-close-hover-color);
     }
   }
+}
+
+.lt-notification-fade-enter-from {
+  &.left {
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  &.right {
+    right: 0;
+    transform: translateX(100%);
+  }
+}
+
+.lt-notification-fade-leave-to {
+  opacity: 0;
 }

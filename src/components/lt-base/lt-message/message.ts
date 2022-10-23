@@ -6,13 +6,14 @@ import {
   IMessagehandler,
   IMessageOptions,
   MessageQueue,
+  MessageVm,
 } from "./type";
 import { createVNode, render } from "vue";
 
 let seed = 1;
 const instances: MessageQueue = [];
 
-const Message: IMessage = (
+const Message: any = (
   opts: MessageParams = {} as MessageParams
 ): IMessagehandler => {
   // 可直接传一个string类型的数据
@@ -29,7 +30,7 @@ const Message: IMessage = (
   console.log("verticalOffset", verticalOffset);
 
   instances.forEach(({ vm }) => {
-    verticalOffset += (vm.el.offsetHeight || 0) + 16;
+    verticalOffset += (vm?.el?.offsetHeight || 0) + 16;
   });
 
   verticalOffset += 16;
@@ -51,7 +52,9 @@ const Message: IMessage = (
 
   instances.push({ vm });
   render(vm, container);
-  document.body.appendChild(container.firstElementChild);
+  if (container.firstElementChild) {
+    document.body.appendChild(container.firstElementChild);
+  }
 
   return {
     close: () => {
@@ -60,23 +63,31 @@ const Message: IMessage = (
   };
 };
 
-export function close(id?: string): void {
+export function close(
+  id?: string,
+  userOnClose?: (vm: MessageVm) => void
+): void {
   const idx = instances.findIndex(({ vm }) => {
-    const _id = vm.component.props.id;
+    const _id = vm?.component?.props.id;
     return id === _id;
   });
 
   if (idx === -1) return;
   const { vm } = instances[idx];
   if (!vm) return;
+  userOnClose?.(vm);
 
   const len = instances.length;
-  const removeHeight = vm.el.offsetHeight;
+  const removeHeight = vm?.el?.offsetHeight;
   if (len < 1) return;
   for (let i = idx; i < len; i++) {
-    const pos = parseInt(instances[i].vm.el.style["top"]) - removeHeight - 16;
-
-    instances[i].vm.component.props.offset = pos;
+    const item = instances[i];
+    if (item) {
+      const pos = parseInt(item?.vm?.el?.style["top"]) - removeHeight - 16;
+      if (item.vm.component) {
+        item.vm.component.props.offset = pos;
+      }
+    }
   }
   instances.splice(idx, 1);
 }

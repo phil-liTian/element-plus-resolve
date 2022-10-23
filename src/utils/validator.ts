@@ -4,11 +4,13 @@ import { isNumber } from "./utils";
 export const isValidWidthUnit = (val: number | string): boolean => {
   if (isNumber(val)) {
     return true;
-  } else {
+  } else if (typeof val === "string") {
     return ["%", "vw", "px", "vmin", "vmax", "em", "rem"].some((unit) =>
       val.endsWith(unit)
     );
   }
+
+  return true;
 };
 
 // 统一校验组件的尺寸

@@ -18,3 +18,5 @@ export const isBoolean = (val: unknown): boolean => typeof val === "boolean";
 
 // 生成一个id
 export const generateId = (): number => Math.floor(Math.random() * 10000);
+
+export { isVNode } from "vue";

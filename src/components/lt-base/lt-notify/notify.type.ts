@@ -7,10 +7,12 @@ export type Position =
   | "bottom-left"
   | "bottom-right";
 
+// 类型
 export type NotifycationType = PropType<
   "success" | "danger" | "info" | "error"
 >;
 
+//
 export type TypedNotificationOptions =
   | Omit<INotificationOptions, "type">
   | string;
@@ -30,7 +32,7 @@ export interface INotification {
 
 // props的类型
 export type INotificationOptions = {
-  type: NotifycationType;
+  type?: NotifycationType;
   customClass?: string;
   duration?: number;
   id?: string;
@@ -38,8 +40,8 @@ export type INotificationOptions = {
   dangerouslyUseHTMLString?: boolean;
   message?: string | VNode;
   zIndex?: number;
-  onClose: () => void;
-  onClick: () => void;
+  onClose?: () => void;
+  onClick?: () => void;
   offset?: number;
   position?: Position;
   showClose?: boolean;

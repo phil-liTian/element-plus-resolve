@@ -5,7 +5,7 @@ type IButtonType = PropType<
   "primary" | "default" | "success" | "warning" | "info" | "text" | "danger"
 >;
 
-type ComponentSize = "small" | "default" | "large";
+// type ComponentSize = "small" | "default" | "large";
 
 export interface IButtonProps {
   type?: IButtonType;

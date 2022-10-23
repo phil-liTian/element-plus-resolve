@@ -113,7 +113,7 @@ export default defineComponent({
     // 设置背景色的共用方法
     const setBackgroundColor = () => {
       const newColor = checked.value ? props.activeColor : props.inActiveColor;
-      const coreEl = core.value;
+      const coreEl: any = core.value;
 
       if (props.borderColor) {
         coreEl.style.borderColor = props.borderColor;
