@@ -11,7 +11,8 @@
     <!-- <AlertTest></AlertTest> -->
     <!-- <OverlayTest></OverlayTest> -->
     <!-- <MessageBoxTest></MessageBoxTest> -->
-    <NotifyTest></NotifyTest>
+    <!-- <NotifyTest></NotifyTest> -->
+    <ContainerTest></ContainerTest>
   </div>
 </template>
 
@@ -28,7 +29,8 @@ import { defineComponent } from "@vue/runtime-core";
 // import AlertTest from "@c/alert-test.vue";
 // import OverlayTest from "@c/overlay-test.vue";
 // import MessageBoxTest from "@c/messageBox-test.vue";
-import NotifyTest from "@c/notify-test.vue";
+// import NotifyTest from "@c/notify-test.vue";
+import ContainerTest from "@c/container-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -44,7 +46,8 @@ export default defineComponent({
     // AlertTest,
     // OverlayTest,
     // MessageBoxTest,
-    NotifyTest,
+    // NotifyTest,
+    ContainerTest,
   },
 
   setup() {

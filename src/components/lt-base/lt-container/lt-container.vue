@@ -3,48 +3,48 @@
     <slot></slot>
   </section>
 </template>
-  
+
 <script lang="ts">
-import type { VNode, Component } from 'vue'
-import { defineComponent } from '@vue/runtime-core';
-import { computed } from 'vue'
-  
+import type { VNode, Component } from "vue";
+import { defineComponent } from "@vue/runtime-core";
+import { computed } from "vue";
+
 export default defineComponent({
-  name: 'LtContainer',
+  name: "LtContainer",
   props: {
     direction: {
       type: String,
-      default: ''
-    }
+      default: "",
+    },
   },
   setup(props, { slots }) {
     const isVertical = computed(() => {
-      if( props.direction ) {
-        return props.direction === 'vertical'
+      if (props.direction) {
+        return props.direction === "vertical";
       }
 
       // 如果里面的插槽有header、footer, 则使用垂直排列
-      if( slots?.default ) {
-        const vNodes: VNode[] = slots.default()
+      if (slots?.default) {
+        const vNodes: VNode[] = slots.default();
 
-        return vNodes.some(vNode => {
-          const tag = (vNode.type as Component).name
+        return vNodes.some((vNode) => {
+          const tag = (vNode.type as Component).name;
+          console.log("tag", tag);
 
-          return tag === 'LtHeader' || tag === 'LtFooter'
-        })
+          return tag === "LtHeader" || tag === "LtFooter";
+        });
       } else {
-        return false
+        return false;
       }
-    })
+    });
 
     return {
-      isVertical
-    }
-  }
-  
-})
+      isVertical,
+    };
+  },
+});
 </script>
-  
+
 <style lang="scss">
-  @import './lt-container.scss';
+@import "./lt-container.scss";
 </style>

@@ -352,7 +352,6 @@ $--alert: map.merge(
   $--alert
 );
 
-<<<<<<< HEAD
 // notification
 $--notification: () !default;
 
@@ -376,7 +375,7 @@ $--notification: map.merge(
     'close-hover-color': var(--lt-text-color-regular),
   ),
   $--notification
-=======
+);
 // header
 $--header: () !default;
 $--header: map.merge(
@@ -404,7 +403,6 @@ $--footer: map.merge(
     'height': 60px,
   ),
   $--footer
->>>>>>> 36db7eb44295a18ec15f1cbf497c0a8dff4be703
 );
 
 $--link-font-color: () !default;

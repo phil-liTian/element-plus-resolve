@@ -3,27 +3,24 @@
     <slot></slot>
   </aside>
 </template>
-  
+
 <script lang="ts">
-import { defineComponent} from '@vue/runtime-core';
-  
+import { defineComponent } from "@vue/runtime-core";
+
 export default defineComponent({
-  name: 'LtAside',
+  name: "LtAside",
   props: {
     width: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   setup() {
-    return {
-      
-    }
-  }
-  
-})
+    return {};
+  },
+});
 </script>
-  
+
 <style lang="scss">
-  @import './lt-aside.scss';
+@import "./lt-aside.scss";
 </style>

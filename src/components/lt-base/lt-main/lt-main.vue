@@ -3,21 +3,18 @@
     <slot></slot>
   </main>
 </template>
-  
-<script lang='ts'>
-import { defineComponent} from '@vue/runtime-core';
-  
+
+<script lang="ts">
+import { defineComponent } from "@vue/runtime-core";
+
 export default defineComponent({
-  name: 'LtMain',
+  name: "LtMain",
   setup() {
-    return {
-  
-    }
-  }
-  
-})
+    return {};
+  },
+});
 </script>
 
 <style lang="scss">
-  @import './lt-main.scss';
+@import "./lt-main.scss";
 </style>

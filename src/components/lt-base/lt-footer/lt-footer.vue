@@ -3,21 +3,18 @@
     <slot></slot>
   </footer>
 </template>
-  
+
 <script lang="ts">
-import { defineComponent} from '@vue/runtime-core';
-  
+import { defineComponent } from "@vue/runtime-core";
+
 export default defineComponent({
-  name: 'LtFooter',
+  name: "LtFooter",
   setup() {
-    return {
-  
-    }
-  }
-  
-})
+    return {};
+  },
+});
 </script>
-  
+
 <style lang="scss">
-  @import './lt-footer.scss';
+@import "./lt-footer.scss";
 </style>
