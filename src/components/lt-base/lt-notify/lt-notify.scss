@@ -1,0 +1,53 @@
+@import "@s/common/var";
+@import "@s/mixins/mixins";
+@import "@s/mixins/_var";
+
+
+@include b(notification) {
+  @include set-component-css-var('notification', $--notification);
+}
+
+@include b(notification) {
+  display: flex;
+  position: fixed;
+  width: var(--lt-notification-width);
+  background-color: var(--lt-color-white);
+  padding: var(--lt-notification-padding);
+  border-radius: var(--lt-notification-radius);
+  overflow: hidden;
+  z-index: 9999;
+  box-sizing: border-box;
+  box-shadow: var(--lt-notification-shadow);
+  
+  &.right {
+    right: 16px;
+  }
+
+  &.left {
+    left: 16px;
+  }
+
+  @include e(group) {
+    margin-left: var(--lt-notification-group-margin-left);
+    margin-right: var(--lt-notification-group-margin-right);
+  }
+
+  @include e(title) {
+    margin: 0;
+    font-size: var(--lt-notification-title-font-size);
+    color: var(--lt-notification-title-color);
+  }
+
+  @include e(closeBtn) {
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      color: var(--lt-notification-close-hover-color);
+    }
+  }
+}

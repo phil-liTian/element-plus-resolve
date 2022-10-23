@@ -307,6 +307,22 @@ $--message: map.merge(
   $--message
 );
 
+// message-box
+$--message-box: () !default;
+$--message-box: map.merge(
+  (
+    'title-color': var(--el-text-color-primary),
+    'width': 420px,
+    'border-radius': 4px,
+    'font-size': var(--el-font-size-large),
+    'content-font-size': var(--el-font-size-base),
+    'content-color': var(--el-text-color-regular),
+    'error-font-size': 12px,
+    'padding-primary': 15px,
+  ),
+  $--message-box
+);
+
 // link
 $--link: () !default;
 $--link: map.merge(
@@ -334,6 +350,31 @@ $--alert: map.merge(
     'icon-large-size': 28px,
   ),
   $--alert
+);
+
+// notification
+$--notification: () !default;
+
+$--notification: map.merge(
+  (
+    'width': 330px,
+    'padding': 14px 26px 14px 13px,
+    'radius': 8px,
+    'shadow': var(--lt-box-shadow-light),
+    'border-color': var(--lt-border-color-lighter),
+    'icon-size': 24px,
+    'close-font-size':
+      var(--lt-message-close-size, map.get($--message, 'close-size')),
+    'group-margin-left': 13px,
+    'group-margin-right': 8px,
+    'content-font-size': var(--lt-font-size-base),
+    'content-color': var(--lt-text-color-regular),
+    'title-font-size': 16px,
+    'title-color': var(--lt-text-color-primary),
+    'close-color': var(--lt-text-color-secondary),
+    'close-hover-color': var(--lt-text-color-regular),
+  ),
+  $--notification
 );
 
 $--link-font-color: () !default;

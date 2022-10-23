@@ -1,0 +1,54 @@
+@import '@s/common/var';
+@import '@s/mixins/mixins';
+@import '@s/mixins/_var';
+
+@include b(message-box) {
+  @include set-component-css-var('messagebox', $--message-box);
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: var(--lt-color-white);
+  padding-bottom: 10px;
+  border-radius: var(--lt-messagebox-border-radius);
+  overflow: hidden;
+  width: var(--lt-messagebox-width);
+  text-align: left;
+  font-size: var(--lt-messagebox-font-size);
+
+  @include e(title) {
+    padding-left: 0;
+    margin-bottom: 0;
+    line-height: 1;
+    font-size: var(--lt-messagebox-font-size);
+    color: var(--lt-messagebox-title-color);
+  }
+
+  // 顶部关闭按钮
+  @include e(headerBtn) {
+    position: absolute;
+    top: var(--lt-messagebox-padding-primary);
+    right: var(--lt-messagebox-padding-primary);
+    padding: 0;
+    outline: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: var(--lt-color-primary);
+    }
+  }
+
+  // 底部按钮总体样式
+  @include e(btns) {
+    padding: 5px 15px 0;
+    text-align: right;
+
+    .lt-button {
+      &:nth-child(2) {
+        margin-left: 10px;
+      }
+    }
+  }
+}

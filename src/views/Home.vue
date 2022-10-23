@@ -8,7 +8,10 @@
     <!-- <MessageTest></MessageTest> -->
     <!-- <DividerTest></DividerTest> -->
     <!-- <LinkTest></LinkTest> -->
-    <AlertTest></AlertTest>
+    <!-- <AlertTest></AlertTest> -->
+    <!-- <OverlayTest></OverlayTest> -->
+    <!-- <MessageBoxTest></MessageBoxTest> -->
+    <NotifyTest></NotifyTest>
   </div>
 </template>
 
@@ -22,7 +25,10 @@ import { defineComponent } from "@vue/runtime-core";
 // import MessageTest from "@c/message-test.vue";
 // import DividerTest from "@c/divider-test.vue";
 // import LinkTest from "@c/link-test.vue";
-import AlertTest from "@c/alert-test.vue";
+// import AlertTest from "@c/alert-test.vue";
+// import OverlayTest from "@c/overlay-test.vue";
+// import MessageBoxTest from "@c/messageBox-test.vue";
+import NotifyTest from "@c/notify-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -35,7 +41,10 @@ export default defineComponent({
     // MessageTest,
     // DividerTest,
     // LinkTest,
-    AlertTest,
+    // AlertTest,
+    // OverlayTest,
+    // MessageBoxTest,
+    NotifyTest,
   },
 
   setup() {

@@ -1,4 +1,3 @@
-import { fa } from "element-plus/es/locale";
 import type { PropType } from "vue";
 
 export const props = {
