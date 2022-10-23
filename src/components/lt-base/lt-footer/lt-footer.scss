@@ -1,0 +1,12 @@
+@import '@s/mixins/mixins';
+@import '@s/mixins/var';
+@import '@s/mixins/_var';
+
+@include b(footer) {
+  @include set-component-css-var('footer', $--footer);
+
+  padding: var(--lt-footer-padding);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  height: var(--lt-footer-height);
+}

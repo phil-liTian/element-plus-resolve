@@ -352,6 +352,7 @@ $--alert: map.merge(
   $--alert
 );
 
+<<<<<<< HEAD
 // notification
 $--notification: () !default;
 
@@ -375,6 +376,35 @@ $--notification: map.merge(
     'close-hover-color': var(--lt-text-color-regular),
   ),
   $--notification
+=======
+// header
+$--header: () !default;
+$--header: map.merge(
+  (
+    'padding': 0 20px,
+    'height': 60px,
+  ),
+  $--header
+);
+
+// main
+$--main: () !default;
+$--main: map.merge(
+  (
+    "padding": 20px
+  ),
+  $--main
+);
+
+// footer
+$--footer: () !default;
+$--footer: map.merge(
+  (
+    'padding': 0 20px,
+    'height': 60px,
+  ),
+  $--footer
+>>>>>>> 36db7eb44295a18ec15f1cbf497c0a8dff4be703
 );
 
 $--link-font-color: () !default;

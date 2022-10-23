@@ -1,0 +1,12 @@
+@import '@s/mixins/mixins';
+@import '@s/mixins/var';
+@import '@s/mixins/_var';
+
+@include b(header) {
+  @include set-component-css-var('header', $--header);
+
+  padding: var(--lt-header-padding);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  height: var(--lt-header-height);
+}
