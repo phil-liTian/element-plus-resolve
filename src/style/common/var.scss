@@ -336,6 +336,35 @@ $--alert: map.merge(
   $--alert
 );
 
+// header
+$--header: () !default;
+$--header: map.merge(
+  (
+    'padding': 0 20px,
+    'height': 60px,
+  ),
+  $--header
+);
+
+// main
+$--main: () !default;
+$--main: map.merge(
+  (
+    "padding": 20px
+  ),
+  $--main
+);
+
+// footer
+$--footer: () !default;
+$--footer: map.merge(
+  (
+    'padding': 0 20px,
+    'height': 60px,
+  ),
+  $--footer
+);
+
 $--link-font-color: () !default;
 
 @each $type in $--types {
