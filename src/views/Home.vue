@@ -13,7 +13,8 @@
     <!-- <MessageBoxTest></MessageBoxTest> -->
     <!-- <NotifyTest></NotifyTest> -->
     <!-- <ContainerTest></ContainerTest> -->
-    <DialogTest></DialogTest>
+    <!-- <DialogTest></DialogTest> -->
+    <DrawerTest></DrawerTest>
   </div>
 </template>
 
@@ -32,7 +33,8 @@ import { defineComponent } from "@vue/runtime-core";
 // import MessageBoxTest from "@c/messageBox-test.vue";
 // import NotifyTest from "@c/notify-test.vue";
 // import ContainerTest from "@c/container-test.vue";
-import DialogTest from "@c/dialog-test.vue";
+// import DialogTest from "@c/dialog-test.vue";
+import DrawerTest from "@c/drawer-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -50,7 +52,8 @@ export default defineComponent({
     // MessageBoxTest,
     // NotifyTest,
     // ContainerTest,
-    DialogTest,
+    // DialogTest,
+    DrawerTest,
   },
 
   setup() {

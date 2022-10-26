@@ -419,6 +419,17 @@ $--dialog: map.merge(
   $--dialog
 );
 
+// drawer
+$--drawer: () !default;
+
+$--drawer: map.merge(
+  (
+    'background-color':  var(--lt-color-white),
+    'padding-primary': 20px
+  ),
+  $--drawer
+);
+
 $--link-font-color: () !default;
 
 @each $type in $--types {
