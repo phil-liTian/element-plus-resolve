@@ -1,0 +1,118 @@
+@import '@s/mixins/mixins';
+@import '@s/mixins/_var';
+@import '@s/common/var';
+@import '@s/common/popup';
+
+@include b(dialog) {
+  @include set-component-css-var('dialog', $--dialog);
+
+  position: relative;
+  width: 50%;
+  background: var(--lt-dialog-background-color);
+  border-radius: var(--lt-border-radius-small);
+  box-shadow: var(--lt-dialog-box-shadow);
+  margin: 0 auto 50px;
+  box-sizing: border-box;
+
+  @include when(fullscreen) {
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    overflow: auto;
+  }
+
+  @include e(header) {
+    padding: var(--lt-dialog-padding-primary);
+    padding-bottom: 10px;
+
+    @include e(title) {
+      font-size: var(--lt-dialog-title-font-size);
+      color: var(--lt-text-color-primary);
+    }
+  }
+
+  @include e(headerbtn) {
+    position: absolute;
+    right: var(--lt-dialog-padding-primary);
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--lt-color-info);
+
+    &:hover,
+    &:focus {
+      color: var(--lt-color-primary);
+    }
+  }
+
+  @include e(body) {
+    padding: calc(var(--lt-dialog-padding-primary) + 10px) var(--lt-dialog-padding-primary);
+    font-size: var(--lt-dialog-content-font-size);
+    color: var(--lt-text-color-regular);
+    word-break: break-all;
+  }
+  
+}
+
+
+.dialog-fade-enter-active {
+  animation: modal-fade-in var(--lt-transition-duration);
+
+  .lt-dialog {
+    animation: dialog-fade-in var(--lt-transition-duration);
+  }
+}
+
+.dialog-fade-leave-active {
+  animation: modal-fade-out var(--lt-transition-duration);
+
+  .lt-dialog {
+    animation: dialog-fade-out var(--lt-transition-duration);
+  }
+}
+
+// 整体modal淡入淡出
+@keyframes modal-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+// dialog 偏移
+@keyframes dialog-fade-in {
+  0% {
+    transform: translate3D(0, -20px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3D(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-fade-out {
+  0% {
+    transform: translate3D(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3D(0, -20px, 0);
+    opacity: 0;
+  }
+}

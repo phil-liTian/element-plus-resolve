@@ -1,5 +1,5 @@
 import { getCurrentInstance } from "vue";
-
+import type { Ref } from "vue";
 // 获取全局配置
 export function useGlobalConfig(): any {
   const vm: any = getCurrentInstance();
@@ -20,3 +20,9 @@ export const isBoolean = (val: unknown): boolean => typeof val === "boolean";
 export const generateId = (): number => Math.floor(Math.random() * 10000);
 
 export { isVNode } from "vue";
+
+// 清除定时器
+export const clearTimer = (timer: Ref) => {
+  clearTimeout(timer.value);
+  timer.value = null;
+};

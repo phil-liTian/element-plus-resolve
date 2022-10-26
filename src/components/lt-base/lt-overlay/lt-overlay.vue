@@ -6,6 +6,8 @@ import { PatchFlags } from "@u/vnode.ts";
 export default defineComponent({
   name: "LtOverlay",
   props,
+  // 需要制定emits，外面调用才能准确指向这里抛出的事件
+  emits: ["click"],
   setup(props, { emit, slots }) {
     let mousedownTarget = false;
     let mouseupTarget = false;

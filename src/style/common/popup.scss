@@ -1,0 +1,8 @@
+@import '@s/mixins/mixins';
+
+
+@include b(popup-parent) {
+  @include m(hidden) {
+    overflow: hidden;
+  }
+}

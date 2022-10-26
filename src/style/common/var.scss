@@ -405,6 +405,20 @@ $--footer: map.merge(
   $--footer
 );
 
+// dialog
+$--dialog: () !default;
+$--dialog: map.merge(
+  (
+    'background-color': var(--lt-color-white),
+    'box-shadow': 0 1px 3px rgba(0, 0, 0, 0.3),
+    'title-font-size': var(--lt-font-size-large),
+    'content-font-size': 14px,
+    'font-line-height': var(--lt-font-line-height-primary),
+    'padding-primary': 20px,
+  ),
+  $--dialog
+);
+
 $--link-font-color: () !default;
 
 @each $type in $--types {
