@@ -14,7 +14,8 @@
     <!-- <NotifyTest></NotifyTest> -->
     <!-- <ContainerTest></ContainerTest> -->
     <!-- <DialogTest></DialogTest> -->
-    <DrawerTest></DrawerTest>
+    <!-- <DrawerTest></DrawerTest> -->
+    <BadgeTest></BadgeTest>
   </div>
 </template>
 
@@ -34,7 +35,8 @@ import { defineComponent } from "@vue/runtime-core";
 // import NotifyTest from "@c/notify-test.vue";
 // import ContainerTest from "@c/container-test.vue";
 // import DialogTest from "@c/dialog-test.vue";
-import DrawerTest from "@c/drawer-test.vue";
+// import DrawerTest from "@c/drawer-test.vue";
+import BadgeTest from "@c/badge-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -53,7 +55,8 @@ export default defineComponent({
     // NotifyTest,
     // ContainerTest,
     // DialogTest,
-    DrawerTest,
+    // DrawerTest,
+    BadgeTest,
   },
 
   setup() {

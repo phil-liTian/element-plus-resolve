@@ -1,0 +1,12 @@
+@import './var.scss';
+
+.lt-zoom-in-center-enter-active,
+.lt-zoom-in-center-leave-active {
+  transition: all var(--lt-transition-duration) cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.lt-zoom-in-center-enter-from,
+.lt-zoom-in-center-leave-active {
+  opacity: 0;
+  // transform: scaleX(0);
+}

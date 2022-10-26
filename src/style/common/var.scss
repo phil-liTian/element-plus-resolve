@@ -430,6 +430,20 @@ $--drawer: map.merge(
   $--drawer
 );
 
+// badge
+$--badge: () !default;
+
+$--badge: map.merge(
+  (
+    'background-color': var(--el-color-danger),
+    'radius': 10px,
+    'font-size': 12px,
+    'padding': 6px,
+    'size': 18px,
+  ),
+  $--badge
+);
+
 $--link-font-color: () !default;
 
 @each $type in $--types {
