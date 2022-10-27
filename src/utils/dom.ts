@@ -33,8 +33,6 @@ export const addClass = (el: HTMLElement, cls: string): void => {
   // 待添加类，处理成数组的形式
   const classes = (cls || "").split(" ");
 
-  console.log("classes", classes);
-
   for (let i = 0, len = classes.length; i < len; i++) {
     const clsName = classes[i];
     if (el.classList) {

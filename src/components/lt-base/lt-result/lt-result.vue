@@ -50,7 +50,7 @@ export default defineComponent({
   props,
   setup(props) {
     const iconElement = computed(() => {
-      const icon = props.icon;
+      const { icon } = props;
       return icon && IconMap[icon] ? IconMap[icon] : "icon-info";
     });
 

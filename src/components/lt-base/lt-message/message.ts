@@ -27,12 +27,9 @@ const Message: any = (
   const userOnClose = options.onClose;
 
   let verticalOffset = opts.offset || 20;
-  console.log("verticalOffset", verticalOffset);
-
   instances.forEach(({ vm }) => {
     verticalOffset += (vm?.el?.offsetHeight || 0) + 16;
   });
-
   verticalOffset += 16;
 
   options = {

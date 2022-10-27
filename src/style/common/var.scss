@@ -444,6 +444,23 @@ $--badge: map.merge(
   $--badge
 );
 
+// collapse
+$--collapse: () !default;
+
+$--collapse: map.merge(
+  (
+    'border-color': var(--lt-border-color-lighter),
+    'header-height': 48px,
+    'header-background-color': var(--lt-color-white),
+    'header-font-color': var(--lt-text-color-primary),
+    'header-font-size': 13px,
+    'content-background-color': var(--lt-color-white),
+    'content-font-size': 13px,
+    'content-font-color': var(--lt-text-color-primary),
+  ),
+  $--collapse
+);
+
 $--link-font-color: () !default;
 
 @each $type in $--types {

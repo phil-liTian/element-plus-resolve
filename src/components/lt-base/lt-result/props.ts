@@ -13,7 +13,7 @@ export const props = {
   },
 
   icon: {
-    type: String as PropType<IIconType>,
+    type: String as PropType<IIconType> | any,
     default: "info",
   },
 };

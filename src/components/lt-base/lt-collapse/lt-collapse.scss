@@ -1,0 +1,66 @@
+@import '@s/mixins/_var';
+@import '@s/mixins/mixins';
+@import '@s/common/var';
+@import '@s/common/transition';
+
+@include b(collapse) {
+  @include set-component-css-var('collapse', $--collapse);
+
+  border-top: 1px solid var(--lt-collapse-border-color);
+  border-bottom: 1px solid var(--lt-collapse-border-color);
+}
+
+
+@include b(collapse-item) {
+  @include e(header) {
+    display: flex;
+    align-items: center;
+    height: var(--lt-collapse-header-height);
+    line-height: var(--lt-collapse-header-height);
+    background-color: var(--lt-collapse-header-background-color);
+    cursor: pointer;
+    border-bottom: 1px solid var(--lt-collapse-border-color);
+    font-size: var(--lt-collapse-header-font-size);
+    font-weight: 500;
+    transition: border-bottom-color var(--lt-transition-duration);
+    outline: none;
+
+    @include e(arrow) {
+      margin: 0 8px 0 auto;
+      transition: transform var(--lt-transition-duration);
+      font-weight: 300;
+
+      @include when(active) {
+        transform: rotate(90deg);
+      }
+    }
+
+    @include when(active) {
+      border-bottom-color: transparent;
+    }
+  }
+
+  @include when(disabled) {
+    cursor: not-allowed;
+    color: var(--lt-font-color-disabled-base);
+  }
+
+  @include e(wrap) {
+    will-change: height;
+    background-color: var(--lt-collapse-content-background-color);
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--lt-collapse-border-color);
+    overflow: hidden;
+  }
+
+  @include e(content) {
+    padding-bottom: 25px;
+    font-size: var(--lt-collapse-content-font-size);
+    color: var(--lt-collapse-content-font-color);
+    line-height: 1;
+  }
+
+  &:last-child {
+    margin-bottom: -1px;
+  }
+}

@@ -30,7 +30,7 @@ export const props = {
   zIndex: Number,
 
   duration: {
-    type: Number,
+    type: Number as any,
     default: 3000,
   },
 

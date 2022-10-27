@@ -10,3 +10,12 @@
   opacity: 0;
   // transform: scaleX(0);
 }
+
+
+// collapse-transition
+
+.collapse-transition {
+  transition: var(--lt-transition-duration) height ease-in-out,
+    var(--lt-transition-duration) padding-top ease-in-out,
+    var(--lt-transition-duration) padding-bottom ease-in-out;
+}

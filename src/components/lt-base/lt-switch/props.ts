@@ -63,9 +63,9 @@ export const props = {
     type: Number,
     default: 40,
   },
-
+  // Function as PropType<() => Promise<boolean> | boolean>
   beforeChange: {
-    type: Function as PropType<() => Promise<boolean> | boolean>,
+    type: String as any,
   },
 
   name: String,

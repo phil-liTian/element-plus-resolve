@@ -47,7 +47,7 @@ export default defineComponent({
 
     const startTimer = () => {
       const { duration } = props;
-      if (duration) {
+      if (duration > 0) {
         timer = setTimeout(() => {
           if (visible.value) {
             close();

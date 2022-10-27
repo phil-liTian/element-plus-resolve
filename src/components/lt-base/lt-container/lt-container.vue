@@ -22,20 +22,20 @@ export default defineComponent({
       if (props.direction) {
         return props.direction === "vertical";
       }
+      return "";
 
       // 如果里面的插槽有header、footer, 则使用垂直排列
-      if (slots?.default) {
-        const vNodes: VNode[] = slots.default();
+      // if (slots?.default) {
+      //   const vNodes: VNode[] = slots.default();
 
-        return vNodes.some((vNode) => {
-          const tag = (vNode.type as Component).name;
-          console.log("tag", tag);
+      //   return vNodes.some((vNode) => {
+      //     const tag = (vNode.type as Component).name;
 
-          return tag === "LtHeader" || tag === "LtFooter";
-        });
-      } else {
-        return false;
-      }
+      //     return tag === "LtHeader" || tag === "LtFooter";
+      //   });
+      // } else {
+      //   return false;
+      // }
     });
 
     return {
