@@ -1,0 +1,40 @@
+@import '@s/mixins/mixins';
+@import '@s/common/var';
+@import '@s/mixins/_var';
+@import '@s/mixins/utils';
+
+
+@include b(empty) {
+  @include set-component-css-var('empty', $--empty);
+}
+
+@include b(empty) {
+  @include flexCenter(column);
+  box-sizing: border-box;
+  padding: var(--lt-empty-padding);
+  
+
+  @include e(image) {
+    width: var(--lt-empty-image-width);
+
+    img {
+      user-select: none;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  @include e(description) {
+    margin-top: var(--lt-empty-description-margin-top);
+    p {
+      margin: 0;
+      font-size: var(--lt-font-size-base);
+      color: var(--lt-text-color-secondary);
+    }
+  }
+
+  @include e(bottom) {
+    margin-top: var(--lt-empty-bottom-margin-top);
+  }
+}

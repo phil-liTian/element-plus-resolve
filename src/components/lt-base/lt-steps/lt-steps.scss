@@ -1,0 +1,7 @@
+@import '@s/common/var';
+@import '@s/mixins/mixins';
+@import '@s/mixins/_var';
+
+@include b(steps) {
+  color: re;
+}

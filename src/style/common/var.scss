@@ -461,6 +461,17 @@ $--collapse: map.merge(
   $--collapse
 );
 
+$--empty: () !default;
+$--empty: map.merge(
+  (
+    'padding': 40px 0,
+    'image-width': 160px,
+    'description-margin-top': 20px,
+    'bottom-margin-top': 20px,
+  ),
+  $--empty
+);
+
 $--link-font-color: () !default;
 
 @each $type in $--types {

@@ -16,7 +16,9 @@
     <!-- <DialogTest></DialogTest> -->
     <!-- <DrawerTest></DrawerTest> -->
     <!-- <BadgeTest></BadgeTest> -->
-    <CollapseTest></CollapseTest>
+    <!-- <CollapseTest></CollapseTest> -->
+    <!-- <EmptyTest></EmptyTest> -->
+    <StepsTest></StepsTest>
   </div>
 </template>
 
@@ -38,7 +40,9 @@ import { defineComponent } from "@vue/runtime-core";
 // import DialogTest from "@c/dialog-test.vue";
 // import DrawerTest from "@c/drawer-test.vue";
 // import BadgeTest from "@c/badge-test.vue";
-import CollapseTest from "@c/collapse-test.vue";
+// import CollapseTest from "@c/collapse-test.vue";
+// import EmptyTest from "@c/empty-test.vue";
+import StepsTest from "@/components/steps-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -59,7 +63,9 @@ export default defineComponent({
     // DialogTest,
     // DrawerTest,
     // BadgeTest,
-    CollapseTest,
+    // CollapseTest,
+    // EmptyTest,
+    StepsTest,
   },
 
   setup() {
