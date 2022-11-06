@@ -1,0 +1,47 @@
+@import './config.scss';
+
+// 工具方法
+@function seletorToString($selector) {
+  // inspect 断电函数
+  $selector: inspect($selector);
+  $selector: str-slice($selector, 2, -2);
+  @return $selector;
+}
+
+// 包含一个修饰元素
+@function containModifier($selector) {
+  $selector: seletorToString($selector);
+
+  @if str-index($selector, $modifier-separator) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// 包含一个when状态类
+@function containWhenFlag($selector) {
+  $selector: seletorToString($selector);
+
+  @if str-index($selector, '.' + $state-prefix) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// 包含一个伪类
+@function containPseudoClass($selector) {
+  $selector: seletorToString($selector);
+
+  @if str-index($selector, ':') {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// 中标三个中的任意一个的情况下，@content内容还是置于原父元素里面
+@function hitAllSpecialNestRule($selector) {
+  @return containModifier($selector) or containWhenFlag($selector) or containPseudoClass($selector)
+}

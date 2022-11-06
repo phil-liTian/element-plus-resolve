@@ -1,0 +1,156 @@
+@import '@s/common/var';
+@import '@s/mixins/mixins';
+
+$typeMaps:(
+  process: var(--lt-text-color-primary),
+  success: var(--lt-color-success),
+  wait: var(--lt-text-color-placeholder),
+  error: var(--lt-color-danger),
+  finish: var(--lt-color-primary)
+);
+
+
+@include b(step) {
+  position: relative;
+  flex-shrink: 1;
+
+  @include pseudo(last-of-type) {
+    @include e(line) {
+      display: none;
+    }
+
+    @include when(flex) {
+      flex-basis: auto !important;
+      flex-shrink: 0;
+      flex-wrap: 0;
+    }
+  }
+
+  @include e(head) {
+    position: relative;
+    width: 100%;
+
+    @each $type, $color in $typeMaps {
+      @include when($type) {
+        color: $color;
+      }
+    }
+
+    
+  }
+
+  @include e(line) {
+    position: absolute;
+    border-color: inherit;
+    transition: 0.25s ease-out;
+
+    @each $type, $color in $typeMaps {
+      @include when($type) {
+        background-color: $color;
+      }
+    }
+
+    @include when(process) {
+      background-color: var(--lt-text-color-placeholder);
+    }
+  }
+
+  @include e(line-inner) {
+    display: block;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+    width: 0;
+    height: 0;
+    color: #0a0;
+  }
+
+  // icon的基本样式
+  @include e(icon) {
+    position: relative;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-color: $--color-white;
+    transition: 0.25s ease-out;
+
+    @include when(text) {
+      border-radius: 50%;
+      border: 2px solid;
+      border-color: inherit;
+    }
+  }
+
+  @include e(icon-inner) {
+
+  }
+  
+  @include e(main) {
+    text-align: left;
+    // padding-left: 10px;
+  }
+
+  @include e(title) {
+    font-size: 16px;
+    line-height: 38px;
+    transition: 0.25s ease-out;
+
+    @each $type, $color in $typeMaps {
+      @include when($type) {
+        color: $color;
+      }
+    }
+  }
+
+  @include e(description) {
+    padding-right: 10%;
+    margin-top: -5px;
+    font-size: 12px;
+    white-space: nowrap;
+
+    @each $type, $color in $typeMaps {
+      @include when($type) {
+        color: $color;
+      }
+    }
+
+  }
+
+  @include e(horizontal) {
+    display: inline-block;
+
+    @include e(line) {
+      height: 2px;
+      top: 11px;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  @include when(vertical) {
+    display: flex;
+    align-items: center;
+
+    @include e(head) {
+      width: 24px;
+      flex-grow: 0;
+    }
+
+    @include e(title) {
+      // line-height: 24px;
+      // flex-wrap: 1;
+    }
+
+    @include e(line) {
+      width: 2px;
+      left: 11px;
+      top: 0;
+      bottom: 0;
+    }
+  }
+}
+

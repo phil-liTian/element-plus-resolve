@@ -1,7 +1,22 @@
 @import '@s/common/var';
 @import '@s/mixins/mixins';
-@import '@s/mixins/_var';
 
 @include b(steps) {
-  color: re;
+  display: flex;
+
+  // todo: 简约风格
+  @include m(simple) {
+
+  }
+
+  // 垂直方向
+  @include m(vertical) {
+    height: 100%;
+    flex-direction: column;
+  }
+
+  // 水平方向
+  @include m(horizontal) {
+    white-space: nowrap;
+  }
 }

@@ -1,4 +1,5 @@
 @import './config.scss';
+@import './function.scss';
 
 @mixin when($state) {
   @at-root {
@@ -34,11 +35,24 @@
     };
   }
 
-  @at-root {
-    #{$currentSelector} {
-      @content;
+  @if hitAllSpecialNestRule($selector) {
+    @at-root {
+      #{$selector} {
+        #{$currentSelector} {
+          @content;
+        }
+      }
+    }
+    
+  } @else {
+    @at-root {
+      #{$currentSelector} {
+        @content;
+      }
     }
   }
+
+  
 }
 
 @mixin m($modifier) {
@@ -59,5 +73,11 @@
     #{$currentSelector} {
       @content;
     }
+  }
+}
+
+@mixin pseudo($pseudo) {
+  @at-root #{&}#{':#{$pseudo}'} {
+    @content;
   }
 }
