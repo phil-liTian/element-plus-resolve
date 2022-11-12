@@ -1,0 +1,78 @@
+@import '@s/mixins/mixins';
+@import '@s/common/var';
+
+@include b(progress) {
+  position: relative;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+
+  @include when(success) {
+    .lt-progress-bar__inner {
+      background-color: var(--lt-color-success);
+    }
+
+
+    .lt-progress-bar__innerText {
+      // color: var(--lt-color-success);
+    }
+  }
+
+
+  @include when(exception) {
+    .lt-progress-bar__inner {
+      background-color: var(--lt-color-danger);
+    }
+  }
+
+  @include when(warning) {
+    .lt-progress-bar__inner {
+      background-color: var(--lt-color-warning);
+    }
+
+
+    .lt-progress-bar__innerText {
+      // color: var(--lt-color-success);
+    }
+  }
+}
+
+
+@include b(progress-bar) {
+  flex-grow: 1;
+  box-sizing: border-box;
+
+  @include e(outer) {
+    height: 6px;
+    background-color: var(--lt-border-color-lighter);
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
+  }
+
+  @include e(inner) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    background-color: var(--lt-color-primary);
+    border-radius: 100px;
+    text-align: right;
+    line-height: 1;
+    white-space: nowrap;
+    transition: width .6s ease;
+  }
+
+
+  @include e(innerText) {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    color: $--color-white;
+    margin: 0 5px;
+  }
+}

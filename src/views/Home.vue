@@ -18,7 +18,8 @@
     <!-- <BadgeTest></BadgeTest> -->
     <!-- <CollapseTest></CollapseTest> -->
     <!-- <EmptyTest></EmptyTest> -->
-    <StepsTest></StepsTest>
+    <!-- <StepsTest></StepsTest> -->
+    <ProgressTest></ProgressTest>
   </div>
 </template>
 
@@ -42,7 +43,8 @@ import { defineComponent } from "@vue/runtime-core";
 // import BadgeTest from "@c/badge-test.vue";
 // import CollapseTest from "@c/collapse-test.vue";
 // import EmptyTest from "@c/empty-test.vue";
-import StepsTest from "@/components/steps-test.vue";
+// import StepsTest from "@/components/steps-test.vue";
+import ProgressTest from "@c/progress-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -65,7 +67,8 @@ export default defineComponent({
     // BadgeTest,
     // CollapseTest,
     // EmptyTest,
-    StepsTest,
+    // StepsTest,
+    ProgressTest,
   },
 
   setup() {
