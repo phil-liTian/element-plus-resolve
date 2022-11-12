@@ -1,7 +1,9 @@
+import type { PropType } from "vue";
+
 export const props = {
   // 进度条类型
   type: {
-    type: String,
+    type: String as PropType<"line" | "dashboard" | "circle">,
     default: "line",
     validator: (val) => {
       return ["line", "dashboard", "circle"].includes(val);
@@ -23,13 +25,13 @@ export const props = {
 
   // color可以是一个字符串、函数、数组
   color: {
-    type: [Array, Function, String],
+    type: [Array, Function, String] as any,
     default: "",
   },
 
   // 进度条内容的文字
   format: {
-    type: Function,
+    type: Function as any,
     default: (val: string) => {
       return `${val}%`;
     },

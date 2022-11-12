@@ -27,13 +27,13 @@
       :style="{ width: `${width}px`, height: `${width}px` }"
     >
       <svg viewBox="0 0 100 100">
-        <path
+        <!-- <path
           class="el-progress-circle__track"
           :d="trackPath"
           stroke="#e5e9f2"
           :stroke-width="relativeStrokeWidth"
           fill="none"
-        />
+        /> -->
         <!-- :style="trailPathStyle" -->
 
         <!-- <path
@@ -63,7 +63,7 @@ type IColorArray = {
 export default defineComponent({
   name: "LtProgress",
   props,
-  setup(props, { emit }) {
+  setup(props) {
     const barStyle = computed(() => {
       return {
         width: `${props.percentage}%`,
@@ -72,11 +72,13 @@ export default defineComponent({
     });
 
     const relativeStrokeWidth = computed(() => {
-      return ((props.strokeWidth / props.width) * 100).toFixed(1);
+      return ((Number(props.strokeWidth) / Number(props.width)) * 100).toFixed(
+        1
+      );
     });
 
     const radius = computed(() => {
-      if (["dashboard", "circle"].includes(props.type)) {
+      if (["dashboard", "circle"].includes(props.type as any)) {
         return parseInt(
           `${50 - parseFloat(relativeStrokeWidth.value) / 2}`,
           10

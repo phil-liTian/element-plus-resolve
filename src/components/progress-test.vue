@@ -1,16 +1,15 @@
 <template>
   <div class="progressTest">
+    text-inside
     <el-progress
-      status="exception"
-      text-inside
-      type="circle"
+      status="success"
       :percentage="percentage"
       :color="colors"
-      :stroke-width="6"
+      :stroke-width="26"
     ></el-progress>
 
     <br />
-
+    <i class="el-icon-warning"></i>
     <!-- color="#0a0" -->
     <lt-progress
       type="circle"
