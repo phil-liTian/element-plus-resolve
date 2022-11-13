@@ -19,7 +19,8 @@
     <!-- <CollapseTest></CollapseTest> -->
     <!-- <EmptyTest></EmptyTest> -->
     <!-- <StepsTest></StepsTest> -->
-    <ProgressTest></ProgressTest>
+    <!-- <ProgressTest></ProgressTest> -->
+    <BacktopTest></BacktopTest>
   </div>
 </template>
 
@@ -44,7 +45,8 @@ import { defineComponent } from "@vue/runtime-core";
 // import CollapseTest from "@c/collapse-test.vue";
 // import EmptyTest from "@c/empty-test.vue";
 // import StepsTest from "@/components/steps-test.vue";
-import ProgressTest from "@c/progress-test.vue";
+// import ProgressTest from "@c/progress-test.vue";
+import BacktopTest from "@c/backtop-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -68,7 +70,8 @@ export default defineComponent({
     // CollapseTest,
     // EmptyTest,
     // StepsTest,
-    ProgressTest,
+    // ProgressTest,
+    BacktopTest,
   },
 
   setup() {

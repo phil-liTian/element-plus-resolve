@@ -494,6 +494,18 @@ $--transition-duration: map.merge(
   $--transition-duration
 );
 
+// backtop
+$--backtop: () !default;
+
+$--backtop: map.merge(
+  (
+    'background-color': var(--lt-color-white),
+    'font-color': var(--lt-color-primary),
+    'hover-background-color': var(--lt-border-color-extra-light),
+  ),
+  $--backtop
+);
+
 $--font-path: 'fonts' !default;
 $--font-display: 'auto' !default;
 

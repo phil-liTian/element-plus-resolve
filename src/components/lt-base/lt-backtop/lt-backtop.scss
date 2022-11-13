@@ -1,0 +1,27 @@
+@import '@s/mixins/mixins';
+@import '@s/mixins/utils';
+@import '@s/mixins/_var';
+@import '@s/common/var';
+@import '@s/common/transition';
+
+@include b(backtop) {
+  @include set-component-css-var('backtop', $--backtop)
+}
+
+@include b(backtop) {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  color: var(--lt-backtop-font-color);
+  background-color: var(--lt-backtop-background-color);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+
+  @include flexCenter();
+
+  &:hover {
+    background-color: var(--lt-backtop-hover-background-color);
+  }
+}

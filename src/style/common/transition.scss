@@ -13,9 +13,19 @@
 
 
 // collapse-transition
-
 .collapse-transition {
   transition: var(--lt-transition-duration) height ease-in-out,
     var(--lt-transition-duration) padding-top ease-in-out,
     var(--lt-transition-duration) padding-bottom ease-in-out;
+}
+
+
+.lt-fade-in-enter-active,
+.lt-fade-in-leave-active {
+  transition: all var(--lt-transition-duration) cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.lt-fade-in-enter-from, 
+.lt-fade-in-leave-active {
+  opacity: 0;
 }
