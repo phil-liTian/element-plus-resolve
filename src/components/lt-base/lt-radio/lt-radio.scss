@@ -1,0 +1,147 @@
+@use "sass:map";
+
+@import '@s/mixins/_var';
+@import '@s/mixins/mixins';
+@import '@s/common/var';
+@import '@s/mixins/utils';
+
+
+@include b(radio) {
+  @include set-component-css-var('radio', $--radio);
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  margin-right: 30px;
+  cursor: pointer;
+  outline: none;
+  white-space: nowrap;
+  font-weight: var(--lt-radio-font-weight);
+
+  @include utils-user-select(none);
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  @include when(bordered) {
+    padding: map.get($--radio-bordered-padding, 'default');
+    border: var(--lt-border-base);
+    height: map.get($--radio-bordered-height, 'default');
+    box-sizing: border-box;
+    border-radius: var(--lt-border-radius-base);
+
+    &.is-checked {
+      border-color: var(--lt-color-primary);
+    }
+
+    &.is-disabled {
+      cursor: not-allowed;
+      border-color: var(--lt-border-color-base);
+    }
+  }
+
+  @each $size in (mini, small, medium) {
+    &.lt-radio--#{$size} {
+      &.is-bordered {
+        padding: map.get($--radio-bordered-padding, $size);
+        border-radius: var(--lt-border-radius-base);
+        height: map.get($--radio-bordered-height, $size);
+        .lt-radio__label {
+          font-size: map.get($--button-font-size, $size);
+        }
+        .lt-radio__inner {
+          height: map.get($--radio-bordered-input-height, $size);
+          width: map.get($--radio-bordered-input-width, $size);
+        }
+      }
+    }
+  }
+
+  @include e(input) {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    cursor: pointer;
+
+    @include when(checked) {
+      .lt-radio__inner {
+        border-color: map.get($--radio-checked, 'input-border-color');
+        background-color: map.get($--radio-checked, 'icon-color');
+
+        &::after {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      // 同级别的样式
+      & +.lt-radio__label {
+        color: map.get($--radio-checked, 'font-color');
+      }
+    }
+
+    @include when(disabled) {
+      .lt-radio__inner {
+        border-color: map.get($--radio-disabled, 'input-border-color');
+        background-color: map.get($--radio-disabled, 'input-fill');
+
+        &::after {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      // 同级别的样式
+      &+.lt-radio__label {
+        color: var(--lt-text-color-placeholder);
+        cursor: not-allowed;
+        font-weight: 500;
+      }
+    }
+  }
+
+  @include e(inner) {
+    display: inline-block;
+    position: relative;
+    width: var(--lt-radio-input-width);
+    height: var(--lt-radio-input-height);
+    background-color: var(--lt-radio-input-background-color);
+    border: var(--lt-radio-input-border);
+    border-radius: var(--lt-radio-input-border-radius);
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--lt-color-primary);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: var(--lt-radio-input-border-radius);
+      background-color: var(--lt-color-white);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform .15s ease-in;
+    }
+  }
+
+  // 原生radio的样式
+  @include e(original) {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+  }
+
+  @include e(label) {
+    font-size: var(--lt-radio-font-size);
+    padding-left: 10px;
+  }
+}

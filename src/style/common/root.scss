@@ -24,8 +24,8 @@
     @include set-css-var-type('border-color', $type, $--border-color)
   }
 
-  --lt-border-width-base: $--border-width-base;
-  --lt-border-style-base: $--border-style-base;
+  --lt-border-width-base: 1px;
+  --lt-border-style-base: solid;
 
   // border-radius
   @each $size in (base, small, round, circle) {
@@ -42,7 +42,18 @@
     @include set-css-color-type($type)
   }
 
+  --lt-background-color-base: #{$--background-color-base};
+
   // transition
   --lt-transition-duration: #{map.get($--transition-duration, 'default')};
   --lt-transition-duration-fast: #{map.get($--transition-duration, 'fast')};
+
+  // disabled
+  --lt-disabled-fill-base: var(--lt-background-color-base);
+  --lt-disabled-color-base: var(--lt-text-color-placeholder);
+  --lt-disabled-border-base: var(--lt-border-color-light);
+
+
+  @include set-component-css-var('transition-function', $--transition-function);
+  @include set-component-css-var('transition', $--transition)
 }

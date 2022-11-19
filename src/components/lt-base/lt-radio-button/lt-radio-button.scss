@@ -1,0 +1,78 @@
+@use 'sass:map';
+@import '@s/mixins/mixins';
+@import '@s/common/var';
+@import '@s/mixins/_var';
+@import '@s/mixins/_button';
+
+@include b(radio-button) {
+   @include set-component-css-var('radio-button', $--radio-button);
+}
+
+@include b(radio-button) {
+  position: relative;
+  display: inline-block;
+  outline: none;
+
+  @include e(inner) {
+    border: $--border-base;
+    border-left: 0;
+    line-height: 1;
+    cursor: pointer;
+    font-weight: var(--lt-button-font-weight, map.get($--button, 'font-weight'));
+    transform: var(--lt-transition-all);
+
+    @include button-size(
+      map.get($--button-padding-vertical, 'mini'),
+      map.get($--button-padding-horizational, 'mini'),
+      map.get($--button-font-size, 'mini'),
+      0
+    );
+
+    &:hover {
+      color: --lt-color-primary;
+    }
+  }
+
+  &:first-child {
+    .lt-radio-button__inner {
+      border-left:  $--border-base;
+      border-radius: var(--lt-border-radius-base) 0 0 var(--lt-border-radius-base);
+    }
+  }
+
+  &:last-child {
+    .lt-radio-button__inner {
+      border-radius: 0 var(--lt-border-radius-base) var(--lt-border-radius-base) 0;
+    }
+  }
+
+
+  @include e(original-radio) {
+    position: absolute;
+    opacity: 0;
+    outline: none;
+    z-index: -1;
+
+    &:checked {
+      &+ .lt-radio-button__inner {
+        color: var(--lt-radio-button-checked-font-color);
+        background-color: var(--lt-radio-button-checked-background-color);
+        border-color: var(--lt-radio-button-checked-border-color);
+        box-shadow: -1px 0 0 0 map.get($--radio-button, 'checked-border-color');
+      }
+    }
+  }
+
+  @each $size in (small, default, large) {
+    @include m($size) {
+      &.lt-radio-button__inner {
+        @include button-size(
+          map.get($--button-padding-vertical, $size),
+          map.get($--button-padding-horizational, $size),
+          map.get($--button-font-size, $size),
+          0
+        )
+      }
+    }
+  }
+}

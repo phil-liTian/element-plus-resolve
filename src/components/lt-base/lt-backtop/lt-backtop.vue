@@ -19,6 +19,7 @@ import {
   ref,
   onMounted,
   onBeforeUnmount,
+  PropType,
 } from "@vue/runtime-core";
 import { computed } from "vue";
 import { on, off } from "@u/dom.ts";
@@ -44,7 +45,7 @@ export default defineComponent({
     },
 
     target: {
-      type: String,
+      type: String as any,
       default: "",
     },
   },

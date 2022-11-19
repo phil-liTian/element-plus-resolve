@@ -20,7 +20,8 @@
     <!-- <EmptyTest></EmptyTest> -->
     <!-- <StepsTest></StepsTest> -->
     <!-- <ProgressTest></ProgressTest> -->
-    <BacktopTest></BacktopTest>
+    <!-- <BacktopTest></BacktopTest> -->
+    <RadioTest></RadioTest>
   </div>
 </template>
 
@@ -46,7 +47,8 @@ import { defineComponent } from "@vue/runtime-core";
 // import EmptyTest from "@c/empty-test.vue";
 // import StepsTest from "@/components/steps-test.vue";
 // import ProgressTest from "@c/progress-test.vue";
-import BacktopTest from "@c/backtop-test.vue";
+// import BacktopTest from "@c/backtop-test.vue";
+import RadioTest from "@c/radio-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -71,7 +73,8 @@ export default defineComponent({
     // EmptyTest,
     // StepsTest,
     // ProgressTest,
-    BacktopTest,
+    // BacktopTest,
+    RadioTest,
   },
 
   setup() {
