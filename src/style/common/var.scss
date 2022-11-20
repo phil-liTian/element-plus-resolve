@@ -578,6 +578,38 @@ $--radio-disabled: map.merge(
   $--radio-disabled
 );
 
+// checkbox样式处理
+$--checkbox: () !default;
+$--checkbox: map.merge(
+  (
+    'font-size': 14px,
+    'font-weight': var(--lt-font-weight-primary),
+    'font-color': var(--lt-text-color-regular),
+    'input-height': 14px,
+    'input-width': 14px,
+    'border-radius': var(--lt-border-radius-small),
+    'background-color': var(--lt-color-white),
+    'input-border': var(--lt-border-base),
+    'disabled-border-color': var(--lt-border-color-base),
+    'disabled-input-fill': #edf2fc,
+    'disabled-icon-color': var(--lt-text-color-placeholder),
+    'disabled-checked-input-fill': var(--lt-border-color-extra-light),
+    'disabled-checked-input-border-color': var(--lt-border-color-base),
+    'disabled-checked-icon-color': var(--lt-text-color-placeholder),
+    'checked-font-color': var(--lt-color-primary),
+    'checked-input-border-color': var(--lt-color-primary),
+    'checked-background-color': var(--lt-color-primary),
+    'checked-icon-color': var(--lt-fill-base),
+    'input-border-color-hover': var(--lt-color-primary),
+  ),
+  $--checkbox
+);
+
+$--disabled-fill-base: var(--lt-background-color-base) !default;
+$--disabled-color-base: var(--lt-text-color-placeholder) !default;
+$--disabled-border-base: var(--lt-border-color-light) !default;
+
+
 $--link-font-color: () !default;
 
 @each $type in $--types {

@@ -21,7 +21,8 @@
     <!-- <StepsTest></StepsTest> -->
     <!-- <ProgressTest></ProgressTest> -->
     <!-- <BacktopTest></BacktopTest> -->
-    <RadioTest></RadioTest>
+    <!-- <RadioTest></RadioTest> -->
+    <CheckboxTest></CheckboxTest>
   </div>
 </template>
 
@@ -48,7 +49,8 @@ import { defineComponent } from "@vue/runtime-core";
 // import StepsTest from "@/components/steps-test.vue";
 // import ProgressTest from "@c/progress-test.vue";
 // import BacktopTest from "@c/backtop-test.vue";
-import RadioTest from "@c/radio-test.vue";
+// import RadioTest from "@c/radio-test.vue";
+import CheckboxTest from "@/components/checkbox-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -74,7 +76,8 @@ export default defineComponent({
     // StepsTest,
     // ProgressTest,
     // BacktopTest,
-    RadioTest,
+    // RadioTest,
+    CheckboxTest,
   },
 
   setup() {

@@ -1,0 +1,218 @@
+@use 'sass:map';
+
+@import '@s/mixins/mixins';
+@import '@s/common/var';
+@import '@s/mixins/_var';
+
+$--checkbox-bordered-padding: () !default;
+$--checkbox-bordered-padding: map.merge(
+  (
+    'default': 9px 20px 9px 10px,
+    'medium': 7px 20px 7px 10px,
+    'small': 5px 15px 5px 10px,
+    'mini': 3px 15px 3px 10px,
+  ),
+  $--checkbox-bordered-padding
+);
+
+$--checkbox-bordered-input-height: () !default;
+$--checkbox-bordered-input-height: map.merge(
+  (
+    'medium': 14px,
+    'small': 12px,
+    'mini': 12px,
+  ),
+  $--checkbox-bordered-input-height
+);
+
+$--checkbox-bordered-height: () !default;
+$--checkbox-bordered-height: map.merge(
+  (
+    'default': 40px,
+    'medium': 36px,
+    'small': 32px,
+    'mini': 28px,
+  ),
+  $--checkbox-bordered-height
+);
+
+$--checkbox-bordered-input-width: () !default;
+$--checkbox-bordered-input-width: map.merge(
+  $--checkbox-bordered-input-height,
+  $--checkbox-bordered-input-width
+);
+
+$--checkbox-line-height: () !default;
+$--checkbox-line-height: map.merge(
+  (
+    'medium': 17px,
+    'small': 15px,
+    'mini': 12px,
+  ),
+  $--checkbox-line-height
+);
+
+
+@include b(checkbox) {
+  @include set-component-css-var(checkbox, $--checkbox);
+}
+
+@include b(checkbox) {
+  position: relative;
+  margin-right: 30px;
+  cursor: pointer;
+
+  // 带边框
+  @include when(bordered) {
+    padding: map.get($--checkbox-bordered-padding, 'default');
+    border: var(--lt-border-base);
+    border-radius: var(--lt-border-radius-base);
+    box-sizing: border-box;
+    line-height: normal;
+    height: map.get($--checkbox-bordered-height, 'default');
+
+    &.is-checked {
+      border-color: var(--lt-color-primary);
+    }
+
+    &.is-disabled {
+      border-color: var(--lt-border-color-lighter);
+      cursor: not-allowed;
+    }
+
+    @each $size in (middle, small, mini) {
+      &.lt-checkbox--#{$size} {
+        padding: map.get($--checkbox-bordered-padding, $size);
+        border-radius: map.get($--button-border-radius, $size);
+        height: map.get($--checkbox-bordered-height, $size);
+
+        .lt-checkbox__label {
+          line-height: map.get($--checkbox-line-height, $size);
+          font-size: map.get($--button-font-size, $size);
+        }
+
+        .lt-checkbox__inner {
+          height: map.get($--checkbox-bordered-input-height, $size);
+          width: map.get($--checkbox-bordered-input-width, $size);
+        }
+      }
+    }
+
+    &.lt-checkbox--small,
+    &.lt-checkbox--mini {
+      .lt-checkbox__inner {
+        &::after {
+          top: 1px;
+          left: 4px;
+        }
+      }
+    }
+  }
+
+  // 用于包裹inner和原生input的元素
+  @include e(input) {
+    vertical-align: middle;
+
+
+    @include when(checked) {
+      .lt-checkbox__inner {
+        background-color: var(--lt-checkbox-checked-background-color);
+        border-color: var(--lt-checkbox-checked-input-border-color);
+
+        &::after {
+          transform: rotate(45deg) scaleY(1);
+        }
+      }
+
+      &+.lt-checkbox__label {
+        color: var(--lt-checkbox-checked-font-color);
+      }
+    }
+
+    // 禁用
+    @include when(disabled) {
+      .lt-checkbox__inner {
+        background-color: var(--lt-checkbox-disabled-input-fill);
+        border-color: var(--lt-checkbox-disabled-border-color);
+        cursor: not-allowed;
+      }
+
+      &.is-checked {
+        .lt-checkbox__inner {
+          background-color: var(--lt-checkbox-disabled-checked-input-fill);
+          border-color: var(--lt-checkbox-disabled-checked-input-border-color);
+
+          &::after {
+            border-color: var(--lt-checkbox-disabled-checked-icon-color);
+          }
+        }
+      }
+
+      &+ .lt-checkbox__label {
+        color: $--disabled-color-base;
+        cursor: not-allowed;
+      }
+    }
+
+    // 聚焦
+    @include when(focus) {
+      .lt-checkbox__inner {
+        border-color: var(--lt-checkbox-input-border-color-hover);
+      }
+    }
+    
+  }
+
+
+  // 用于区分选中状态的元素
+  @include e(inner) {
+    display: inline-block;
+    position: relative;
+    width: var(--lt-checkbox-input-width);
+    height: var(--lt-checkbox-input-height);
+    border: var(--lt-checkbox-input-border);
+    background-color: var( --lt-checkbox-background-color);
+    border-radius: var(--lt-checkbox-border-radius);
+
+    &:hover {
+      border-color: var(--lt-checkbox-input-border-color-hover);
+    }
+
+    // 方框中的对号
+    &::after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 2px;
+      left: 5px;
+      width: 3px;
+      height: 7px;
+      border: 1px solid #fff;
+      border-left: 0;
+      border-top: 0;
+      transform: rotate(45deg) scaleY(0);
+      transition: transform .15s ease-in .05s;
+    }
+  }
+
+  @include e(original) {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    position: absolute;
+    z-index: -1;
+  }
+
+
+  @include e(label) {
+    display: inline-block;
+    padding-left: 10px;
+    line-height: 19px;
+    font-size: var(--lt-checkbox-font-size);
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
