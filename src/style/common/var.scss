@@ -678,3 +678,17 @@ $--backtop: map.merge(
 $--font-path: 'fonts' !default;
 $--font-display: 'auto' !default;
 
+
+/* Rate
+--------------------------*/
+$--rate: () !default;
+$--rate: map.merge(
+  (
+    'height': 20px,
+    'font-size': var(--lt-font-size-base),
+    'icon-size': 18px,
+    'icon-margin': 6px,
+    'icon-color': var(--lt-text-color-placeholder),
+  ),
+  $--rate
+);

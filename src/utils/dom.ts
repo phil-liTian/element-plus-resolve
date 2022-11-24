@@ -61,3 +61,23 @@ export const removeClass = (el: HTMLElement, cls: string): void => {
     }
   }
 };
+
+/**
+ *
+ * @param el 当前元素
+ * @param cls 待判断的类名
+ * @returns
+ */
+export const hasClass = (el: HTMLElement, cls: string): boolean => {
+  if (!el || !cls) return;
+  // 不可包含空格
+  if (cls.indexOf(" ") !== -1) {
+    throw new Error("classNames should not contain space");
+  }
+
+  if (el.classList) {
+    return el.classList.contains(cls);
+  } else {
+    return ` ${el.className} `.includes(` ${cls} `);
+  }
+};

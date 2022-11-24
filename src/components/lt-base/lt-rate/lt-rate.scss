@@ -1,0 +1,46 @@
+@import '@s/common/var';
+@import '@s/mixins/mixins';
+@import '@s/mixins/_var';
+
+@include b(rate) {
+  @include set-component-css-var('rate', $--rate);
+}
+
+@include b(rate) {
+
+
+  @include e(item) {
+    display: inline-block;
+    position: relative;
+    font-size: 0;
+    vertical-align: middle;
+  }
+
+  // icon的样式
+  @include e(icon) {
+    position: relative;
+    display: inline-block;
+    margin-right: var(--lt-rate-icon-margin);
+    color: var(--lt-rate-icon-color);
+    font-size: var(--lt-rate-icon-size);
+    transition: var(--el-transition-duration);
+
+    &.hover {
+      transform: scale(1.15);
+    }
+  }
+
+  @include e(decimal) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  @include e(text) {
+    font-size: var(--lt-rate-font-size);
+    vertical-align: middle;
+  }
+
+}
