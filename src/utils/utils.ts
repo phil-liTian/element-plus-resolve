@@ -1,5 +1,6 @@
 import { getCurrentInstance } from "vue";
 import type { Ref } from "vue";
+import { camelize } from "@vue/shared";
 // 获取全局配置
 export function useGlobalConfig(): any {
   const vm: any = getCurrentInstance();
@@ -26,3 +27,5 @@ export const clearTimer = (timer: Ref) => {
   clearTimeout(timer.value);
   timer.value = null;
 };
+
+export { camelize };

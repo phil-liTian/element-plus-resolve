@@ -692,3 +692,14 @@ $--rate: map.merge(
   ),
   $--rate
 );
+
+
+// loading
+$--loading: () !default;
+$--loading: map.merge(
+  (
+    'spinner-size': 42px,
+    'fullscreen-spinner-size': 50px,
+  ),
+  $--loading
+);

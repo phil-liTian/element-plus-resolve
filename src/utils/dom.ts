@@ -1,3 +1,5 @@
+import { camelize } from "./utils";
+
 // 添加事件
 export const on = function (
   element: HTMLElement | Document | Window,
@@ -79,5 +81,28 @@ export const hasClass = (el: HTMLElement, cls: string): boolean => {
     return el.classList.contains(cls);
   } else {
     return ` ${el.className} `.includes(` ${cls} `);
+  }
+};
+
+/**
+ * 查询当前dom上的样式属性
+ * @param element 待查询的dom元素
+ * @param styleName 待查询的样式
+ * @returns
+ */
+export const getStyle = (element: HTMLElement, styleName: string) => {
+  // if (!element || !styleName) return null;
+  styleName = camelize(styleName);
+  console.log("styleName", styleName);
+  if (styleName === "float") {
+    // TODO
+  }
+
+  try {
+    const style = element.style[styleName];
+
+    if (style) return style;
+  } catch (e) {
+    return element.style[styleName];
   }
 };

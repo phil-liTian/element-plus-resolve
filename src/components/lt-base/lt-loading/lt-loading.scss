@@ -1,0 +1,96 @@
+@import '@s/mixins/mixins';
+@import '@s/common/var';
+@import '@s/mixins/_var';
+
+:root {
+  @include set-component-css-var('loading', $--loading)
+}
+
+
+@include b(loading-mask) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  z-index: 2000;
+  background-color: rgba($color: #fff, $alpha: .9);
+
+  @include when(fullscreen) {
+    position: fixed;
+
+    .lt-loading-spinner {
+      margin-top: calc((0px - var(--lt-loading-fullscreen-spinner-size)) / 2);
+
+      .circle {
+        width: var(--lt-loading-fullscreen-spinner-size);
+        height: var(--lt-loading-fullscreen-spinner-size);
+      }
+    }
+  }
+}
+
+
+
+@include b(loading-parent) {
+  &--relative {
+    position: relative !important;
+  }
+
+  &--hidden {
+    overflow: hidden !important;
+  }
+}
+
+@include b(loading-spinner) {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  margin-top: calc((0px - var(--lt-loading-spinner-size)) / 2);
+
+  .lt-loading-text {
+    color: var(--lt-color-primary);
+    margin: 3px 0;
+    font-size: 14px;
+  }
+
+  .circle {
+    display: inline;
+    width: var(--lt-loading-spinner-size);
+    height: var(--lt-loading-spinner-size);
+  }
+
+
+  .path {
+    animation: ltloading-dash 1.5s ease-in-out infinite;
+    stroke-dasharray: 90 150;
+    stroke-dashoffset: 0;
+    stroke-width: 2;
+    stroke: var(--lt-color-primary);
+  }
+}
+
+.lt-loading-fade-enter-from,
+.lt-loading-fade-leave-to {
+  opacity: 0;
+}
+
+@keyframes ltloading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
+}
+
