@@ -1,0 +1,97 @@
+@import '@s/mixins/mixins';
+@import '@s/common/var';
+
+
+@include b(tabs) {
+
+  // 激活的bar样式
+  @include e(active-bar) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--lt-color-primary);
+    height: 2px;
+    z-index: 1;
+    transition: transform var(--lt-transition-duration);
+    list-style: none;
+  }
+
+  @include e(new-tab) {
+    // float: right;
+    position: absolute;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #d3dce6;
+    font-size: 12px;
+    text-align: center;
+    line-height: 18px;
+    border-radius: 3px;
+    margin: 12px 0 9px 0;
+    cursor: pointer;
+    transition: all .15s;
+    z-index: 1;
+
+    .el-icon-plus {
+      transform: scale(.88, .8);
+    }
+
+
+    &:hover {
+      color: var(--lt-color-primary);
+    }
+  }
+
+
+  // 底部nav
+  @include e(nav-wrap) {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #e4e7ed;
+    }
+  }
+
+
+  // 每一个tab的样式
+  @include e(item) {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    color: var(--lt-text-color-primary);
+    cursor: pointer;
+
+
+    @include when(active) {
+      color: var(--lt-color-primary);
+    }
+
+    &:hover {
+      color: var(--lt-color-primary);
+    }
+
+    @include when(disabled) {
+      color: $--disabled-color-base;
+      // cursor: default;
+      cursor: not-allowed;
+    }
+
+  }
+
+
+  @include m((top, bottom)) {
+    .lt-tabs__item.is-top:nth-child(2),
+    .lt-tabs__item.is-bottom:nth-child(2) {
+      padding-left: 0;
+    }
+  }
+}
