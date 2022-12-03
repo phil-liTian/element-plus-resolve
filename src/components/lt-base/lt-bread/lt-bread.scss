@@ -1,0 +1,53 @@
+@import '@s/mixins/_var';
+@import '@s/common/var';
+@import '@s/mixins/mixins';
+
+@include b(bread) {
+  font-size: 14px;
+  line-height: 1;
+  color: var(--lt-text-color-placeholder);
+
+  @include e(separator) {
+    margin: 0 9px;
+    font-weight: bold;
+  }
+
+
+  @include e(item) {
+    float: left;
+
+    @include e(inner) {
+      color: var(--lt-text-color-regular);
+
+      &.is-link, 
+      & a{
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--lt-text-color-primary);
+        transition: var(--lt-transitions-color);
+
+        &:hover {
+          color: var(--lt-color-primary);
+          cursor: pointer;
+        }
+      }
+    }
+
+    // 最后一个item的样式内容不管是啥都当文本处理
+    &:last-child {
+      .lt-bread__inner,
+      .lt-bread__inner a {
+        &,
+        &:hover {
+          color: var(--lt-text-color-regular);
+          font-weight: normal;
+          cursor: text;
+        }
+      }
+
+      .lt-bread__separator {
+        display: none;
+      }
+    }
+  }
+}
