@@ -21,7 +21,7 @@ export default defineComponent({
     },
   },
 
-  setup(props) {
+  setup(props: any) {
     const breadcrumb = ref(null);
     provide<IBreadType>("breadcrumb", props);
 

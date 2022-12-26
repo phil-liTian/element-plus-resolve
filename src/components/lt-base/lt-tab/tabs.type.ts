@@ -16,6 +16,7 @@ export interface Pane {
   props?: IPaneProps;
   acitve?: ComputedRef<boolean>;
   isClosable?: ComputedRef<boolean>;
+  index?: Ref<string>;
 }
 
 // rootTabs，tabs提供给每一个子组件自己的props

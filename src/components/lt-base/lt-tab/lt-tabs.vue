@@ -11,6 +11,7 @@ import {
   provide,
   watch,
   onUpdated,
+  Fragment,
 } from "@vue/runtime-core";
 import {
   ITabType,
@@ -46,8 +47,9 @@ export default defineComponent({
     },
     addable: Boolean,
     closable: Boolean,
+    stretch: Boolean, // tab-pane单元格是否自动拉升
   },
-  emits: [UPDATE_MODEL_EVENT, "tab-click", "tab-add"],
+  emits: [UPDATE_MODEL_EVENT, "tab-click", "tab-add", "tab-remove", "edit"],
   setup(props, ctx) {
     const panes = ref([]);
     const currentName = ref(props.modelValue || props.activeName || "0");
@@ -74,9 +76,15 @@ export default defineComponent({
 
       if (before && isPromise(before)) {
         // before可以是一个promise对象
+        before.then(
+          () => {
+            changeCurrentName(value);
+          },
+          () => {
+            // TODO: reject
+          }
+        );
       } else if (before !== false) {
-        console.log("beforeLeave", value);
-
         changeCurrentName(value);
       }
     };
@@ -86,12 +94,9 @@ export default defineComponent({
     });
 
     // 当currentName发生变化的时候，强制更新panes对象
-    watch(
-      () => currentName.value,
-      () => {
-        setPaneInstance(true);
-      }
-    );
+    watch(currentName, () => {
+      setPaneInstance(true);
+    });
 
     // provide提供更新pane信息的方法
     provide<UpdatePaneStateCallback>("updatePaneState", (pane: Pane) => {
@@ -105,9 +110,10 @@ export default defineComponent({
         let type = node.type;
 
         type = (type as Component).name || type;
-
         if (type === "LtTabPane" && node.component) {
           paneInstanceList.push(node.component);
+        } else if (type === Fragment || type === "template") {
+          getPaneInstanceFromSlot(node, paneInstanceList);
         }
       });
 
@@ -151,21 +157,23 @@ export default defineComponent({
 
     // 点击tab__item触发的方法
     const handleItemClick = (pane, tabName, ev) => {
-      // TODO: pane有可能是不可被点击的
       if (pane.props.disabled) return;
       setCurrentName(tabName);
-      ctx.emit("tab-click");
+      ctx.emit("tab-click", pane, ev);
     };
 
     // 点击移除按钮
     const handleTabRemove = (pane, ev) => {
       if (pane.props.disabled) return;
+      ev.stopPropagation();
+      ctx.emit("tab-remove", pane.props.name);
+      ctx.emit("edit", pane.props.name, "remove");
     };
 
     // 点击添加按钮
     const handleTabAdd = () => {
-      console.log("add");
       ctx.emit("tab-add");
+      ctx.emit("edit", null, "add");
     };
 
     onMounted(() => {
@@ -181,6 +189,7 @@ export default defineComponent({
       setPaneInstance,
       handleItemClick,
       handleTabAdd,
+      handleTabRemove,
     };
   },
 
@@ -193,6 +202,7 @@ export default defineComponent({
       addable,
       handleTabAdd,
       handleTabRemove,
+      stretch,
     } = this;
 
     // 添加按钮
@@ -218,6 +228,7 @@ export default defineComponent({
         h(TabNav, {
           // 传进去的是元素是当前pane的实例对象的数组
           panes,
+          stretch,
           onTabClick: handleItemClick,
           onTabRemove: handleTabRemove,
         }),
@@ -236,6 +247,8 @@ export default defineComponent({
       {
         class: {
           "lt-tabs": true,
+          "lt-tabs--card": type === "card",
+          "lt-tabs--border-card": type === "border-card",
           [`lt-tabs--${tabPosition}`]: true,
         },
       },

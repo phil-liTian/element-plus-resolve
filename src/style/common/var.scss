@@ -127,6 +127,8 @@ $--border-color: map.merge(
   $--border-color
 );
 
+$--border-color-hover: var(--lt-text-color-placeholder) !default;
+
 $--font-size: () !default;
 $--font-size: map.merge(
   (
@@ -702,4 +704,77 @@ $--loading: map.merge(
     'fullscreen-spinner-size': 50px,
   ),
   $--loading
+);
+
+
+// input
+$--input: () !default;
+
+$--input: map.merge(
+  (
+    'font-color': var(--lt-text-color-regular),
+    'border': var(--lt-border-base),
+    'border-color': var(--lt-border-color-base),
+    'border-radius': var(--lt-border-radius-base),
+    'icon-color': var(--lt-text-color-placeholder),
+    'background-color': var(--lt-color-white),
+    'placeholder-color': var(--lt-text-color-placeholder),
+    'hover-border': var(--lt-border-color-hover),
+    'clear-hover-color': var(--lt-text-color-secondary),
+    'focus-border': var(--lt-color-primary),
+  ),
+  $--input
+);
+
+$--input-disabled: () !default;
+$--input-disabled: map.merge(
+  (
+    'fill': var(--lt-disabled-fill-base),
+    'border': var(--lt-disabled-border-base),
+    'color': var(--lt-disabled-color-base),
+    'placeholder-color': var(--lt-text-color-placeholder),
+  ),
+  $--input-disabled
+);
+
+$--input-font-size: () !default;
+$--input-font-size: map.merge(
+  (
+    'default': var(--lt-font-size-base, map.get($--font-size, 'base')),
+    'medium': 14px,
+    'small': 13px,
+    'mini': 12px,
+  ),
+  $--input-font-size
+);
+
+$--input-height: () !default;
+$--input-height: map.merge(
+  (
+    'default': 40px,
+    'medium': 36px,
+    'small': 32px,
+    'mini': 28px,
+  ),
+  $--input-height
+);
+
+$--input-line-height: () !default;
+$--input-line-height: map.merge(
+  (
+    'medium': 28px,
+    'small': 24px,
+    'mini': 20px,
+  ),
+  $--input-line-height
+);
+
+$--input-number-width: () !default;
+$--input-number-width: map.merge(
+  (
+    'medium': 200px,
+    'small': 130px,
+    'mini': 130px,
+  ),
+  $--input-number-width
 );

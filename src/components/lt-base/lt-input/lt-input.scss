@@ -1,0 +1,107 @@
+@use "sass:map";
+@import '@s/mixins/mixins';
+@import '@s/common/var';
+@import '@s/mixins/_var';
+
+@include b(input) {
+  @include set-component-css-var('input', $--input);
+}
+
+@include b(input) {
+  position: relative;
+  width: 100%;
+  display: inline-flex;
+  line-height: map.get($--input-height, 'default');
+  font-size: var(--lt-font-size-base);
+
+  @include e(inner) {
+    width: 100%;
+    background-color: var(--lt-input-background-color, map.get($--input, 'background-color'));
+    border: var(--lt-input-border, map.get($--input, 'border'));
+    border-radius: var(--lt-input-border-radius);
+    box-sizing: border-box;
+    padding: 0 15px;
+    height: map.get($--input-height, 'default');
+    line-height: map.get($--input-height, 'default');
+    outline: none;
+    color: var(--lt-input-font-color, map.get($--input, 'font-color'));
+
+
+    &::placeholder {
+      color: var(--lt-input-placeholder-color, map.get($--input, 'placeholder-color'));
+    }
+
+    &:hover {
+      // border-color: var(--lt-input-hover-color, map.get($--input, 'hover-border'));
+    }
+  }
+
+  .lt-input__count {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    height: 100%;
+    color: var(--lt-color-info);
+    &-inner {
+      padding: 0 5px;
+    }
+  }
+
+  @include e(prefix) {
+    position: absolute;
+    height: 100%;
+    left: 5px;
+    top: 0;
+    color: var(--lt-input-icon-color);
+    text-align: center;
+    transition: all var(--lt-transition-duration);
+  }
+
+  @include e(suffix) {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    height: 100%;
+    color: var(--lt-input-icon-color);
+    text-align: center;
+    transition: all var(--lt-transition-duration);
+  }
+
+  @include e(icon) {
+    width: 25px;
+    text-align: center;
+    transition: all var(--lt-transition-duration);
+    line-height: map.get($--input-height, 'default');
+
+    &::after {
+      content: '';
+      width: 0;
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  @include m(prefix) {
+    .lt-input__inner {
+      padding-left: 30px;
+    }
+  }
+
+  @include when(disabled) {
+    .lt-input__inner {
+      background-color: map.get($--input-disabled, 'fill');
+      border-color: map.get($--input-disabled, 'border');
+      color: map.get($--input-disabled, 'color');
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: map.get($--input-disabled, 'placeholder-color');
+      }
+    }
+
+    .lt-input__icon {
+      cursor: not-allowed;
+    }
+  }
+}

@@ -4,6 +4,25 @@
 
 @include b(tabs) {
 
+  @include e(nav-scroll) {
+    overflow: hidden;
+  }
+
+  @include e(nav) {
+    position: relative;
+    float: left;
+
+    @include when(stretch) {
+      display: flex;
+      min-width: 100%;
+
+      & > * {
+        flex: 1;
+        text-align: center;
+      }
+    }
+  }
+
   // 激活的bar样式
   @include e(active-bar) {
     position: absolute;
@@ -42,7 +61,6 @@
     }
   }
 
-
   // 底部nav
   @include e(nav-wrap) {
     position: relative;
@@ -57,7 +75,6 @@
     }
   }
 
-
   // 每一个tab的样式
   @include e(item) {
     display: inline-block;
@@ -70,7 +87,6 @@
     color: var(--lt-text-color-primary);
     cursor: pointer;
 
-
     @include when(active) {
       color: var(--lt-color-primary);
     }
@@ -81,10 +97,57 @@
 
     @include when(disabled) {
       color: $--disabled-color-base;
-      // cursor: default;
       cursor: not-allowed;
     }
 
+  }
+
+  // type => card
+  @include m(card) {
+    .lt-tabs__header {
+      border-bottom: 1px solid var(--lt-border-color-light);
+
+      .lt-tabs__active-bar {
+        display: none;
+      }
+
+      .lt-tabs__nav-wrap::after {
+        content: none;
+      }
+
+      .lt-tabs__nav {
+        border: 1px solid var(--lt-border-color-light);
+        border-bottom: none;
+        box-sizing: border-box;
+        border-radius: 4px 4px 0 0;
+      }
+
+      .lt-tabs__item {
+        border-bottom: 1px solid transparent;
+        border-left: 1px solid var(--lt-border-color-light);
+        padding: 0 20px;
+        transition: color var(--el-transition-duration) cubic-bezier(0.645, 0.045, 0.355, 1),
+                    padding var(--el-transition-duration) cubic-bezier(0.645, 0.045, 0.355, 1);;
+
+        &:first-child {
+          border-left: none;
+        }
+
+        .el-icon-close {
+          position: relative;
+          height: 14px;
+          line-height: 15px;
+          font-size: 12px;
+          top: -1px;
+          right: -2px;
+          transform-origin: 100% 50%;
+        }
+
+        &.is-active {
+          border-bottom-color: $--color-white;
+        }
+      }
+    }
   }
 
 
@@ -92,6 +155,14 @@
     .lt-tabs__item.is-top:nth-child(2),
     .lt-tabs__item.is-bottom:nth-child(2) {
       padding-left: 0;
+    }
+
+    &.lt-tabs--card {
+      .lt-tabs__header {
+        .lt-tabs__item:nth-child(2) {
+          padding-left: 20px;
+        }
+      }   
     }
   }
 }

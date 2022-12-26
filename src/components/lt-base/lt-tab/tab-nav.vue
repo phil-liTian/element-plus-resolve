@@ -3,7 +3,7 @@ import { defineComponent, h, inject } from "@vue/runtime-core";
 import { NOOP } from "@vue/shared";
 import type { PropType } from "vue";
 import TabBar from "./tab-bar.vue";
-import type { Pane, RootTabs } from "./tabs.type";
+import type { Pane, RootTabs, ITabType } from "./tabs.type";
 
 export default defineComponent({
   name: "TabNav",
@@ -26,6 +26,13 @@ export default defineComponent({
       type: Function,
       default: NOOP,
     },
+
+    type: {
+      type: String as PropType<ITabType>,
+      default: "",
+    },
+
+    stretch: Boolean,
   },
   setup() {
     const rootTabs = inject<RootTabs>("rootTabs");
@@ -35,7 +42,7 @@ export default defineComponent({
     };
   },
   render() {
-    const { panes, rootTabs, onTabClick, onTabRemove } = this;
+    const { panes, rootTabs, onTabClick, onTabRemove, type, stretch } = this;
 
     const tabs = panes.map((pane, index) => {
       const tabName = pane.paneName || index;
@@ -68,17 +75,30 @@ export default defineComponent({
     });
 
     return h("div", { class: "lt-tabs__nav-wrap" }, [
-      h("div", { class: "lt-tabs__nav-scroll" }, [
-        h(
-          "div",
-          {
-            class: ["lt-tabs__nav", `is-${rootTabs.props.tabPosition}`],
-            ref: "nav$",
-            role: "tabList",
-          },
-          [h(TabBar, { tabs: panes }), tabs]
-        ),
-      ]),
+      h(
+        "div",
+        {
+          class: "lt-tabs__nav-scroll",
+        },
+        [
+          h(
+            "div",
+            {
+              class: [
+                "lt-tabs__nav",
+                `is-${rootTabs.props.tabPosition}`,
+                stretch &&
+                ["top", "bottom"].includes(rootTabs.props.tabPosition)
+                  ? "is-stretch"
+                  : "",
+              ],
+              ref: "nav$",
+              role: "tabList",
+            },
+            [!type ? h(TabBar, { tabs: panes }) : null, tabs]
+          ),
+        ]
+      ),
     ]);
   },
 });

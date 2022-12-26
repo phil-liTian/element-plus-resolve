@@ -1,0 +1,5 @@
+## input学习笔记
+
+### compositionStart与compositionEnd的作用
+
+1. 在使用input输入中文的时候，当用户输入拼音的同时会触发input事件，使用composition事件可以很好的避免这种问题。因为只有输入中文的时候会触发compositionStart和compositionEnd事件

@@ -28,4 +28,9 @@ export const clearTimer = (timer: Ref) => {
   timer.value = null;
 };
 
+// entries
+export const entries = (obj) => {
+  return Object.keys(obj).map((key: string) => [key, obj[key]]);
+};
+
 export { camelize };
