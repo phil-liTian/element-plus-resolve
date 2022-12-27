@@ -6,13 +6,13 @@
       prefixIcon="Search"
       suffix-icon="CloseBold"
       placeholder="Please input"
-      showWordLimit
       :maxlength="10"
       clearable
       autocomplete
-      type="password"
+      size="medium"
     >
-      <template #prefix> 这个前置内容 </template>
+      <!-- <template #prefix> 这个前置内容 </template> -->
+      <template #prepend>Http://</template>
     </el-input>
     <br />
     <br />
@@ -22,7 +22,11 @@
       prefixIcon="el-icon-search"
       placeholder="Please input"
       clearable
+      showPassword
+      :tabindex="1"
+      size="medium"
     >
+      <template #prepend>Http://</template>
       <!-- <template #prefix> 这个前置内容 </template> -->
     </lt-input>
   </div>
@@ -37,8 +41,13 @@ export default defineComponent({
     const state = reactive({
       input: "",
     });
+    const formatter = (value) => {
+      return `$ ${value}`;
+    };
+
     return {
       ...toRefs(state),
+      formatter,
     };
   },
 });

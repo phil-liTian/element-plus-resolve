@@ -2,15 +2,17 @@
   <div
     :class="[
       type === 'textarea' ? 'lt-textarea' : 'lt-input',
+      inputSize ? `lt-input--${inputSize}` : '',
       {
         'is-disabled': inputDisabled,
         'is-exceed': inputExceed,
-        'lt-input--group': $slots.prepend || $slots.append,
+        'lt-input-group': $slots.prepend || $slots.append,
         'lt-input-group--prepend': $slots.prepend,
         'lt-input-group--append': $slots.append,
         'lt-input--prefix': $slots.prefix || prefixIcon,
         'lt-inpit--suffix': $slots.suffix || suffixIcon,
       },
+      $attrs.class,
     ]"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
@@ -21,42 +23,76 @@
       <div v-if="$slots.prepend" class="lt-input-group__prepend">
         <slot name="prepend"></slot>
       </div>
-      <input
-        v-bind="attrs"
-        ref="input"
-        class="lt-input__inner"
-        :placeholder="placeholder"
-        :disabled="inputDisabled"
-        @compositionstart="handleCompositionStart"
-        @compositionend="handleCompositionEnd"
-        @input="handleInput"
-        @focus="handleFocus"
-      />
-      <!-- 前置内容 -->
-      <div v-if="$slots.prefix || prefixIcon" class="lt-input__prefix">
-        <slot name="prefix"></slot>
-        <i v-if="prefixIcon" :class="['lt-input__icon', prefixIcon]"></i>
-      </div>
-      <!-- 后置内容 -->
-      <div v-if="getSuffixVisible()" class="lt-input__suffix">
-        <slot name="suffix"></slot>
-        <i v-if="suffixIcon" :class="['lt-input__icon', suffixIcon]"></i>
-        <!-- 清空 -->
-        <i v-if="showClear" class="el-icon-circle-close" @click="clear"></i>
-        <!-- 计数 -->
-        <span v-if="isWordLimitVisible" class="lt-input__count">
-          <span class="lt-input__count-inner">
-            {{ textLength }} / {{ maxlength }}
+      <div class="lt-input__wrapper">
+        <input
+          v-bind="attrs"
+          ref="input"
+          class="lt-input__inner"
+          :placeholder="placeholder"
+          :disabled="inputDisabled"
+          :readonly="readonly"
+          :tabindex="tabindex"
+          :autocomplete="autocomplete"
+          :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
+          :style="inputStyle"
+          @compositionstart="handleCompositionStart"
+          @compositionend="handleCompositionEnd"
+          @input="handleInput"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @change="handleChange"
+          @keydown="handleKeydown"
+        />
+        <!-- 前置内容 -->
+        <div v-if="$slots.prefix || prefixIcon" class="lt-input__prefix">
+          <slot name="prefix"></slot>
+          <i v-if="prefixIcon" :class="['lt-input__icon', prefixIcon]"></i>
+        </div>
+        <!-- 后置内容 -->
+        <div v-if="getSuffixVisible()" class="lt-input__suffix">
+          <template v-if="!showClear || !showPwdVisible || !isWordLimitVisible">
+            <slot name="suffix"></slot>
+            <i v-if="suffixIcon" :class="['lt-input__icon', suffixIcon]"></i>
+          </template>
+          <!-- 清空 -->
+          <i v-if="showClear" class="el-icon-circle-close" @click="clear"></i>
+          <!-- 显示显示、隐藏按钮 -->
+          <i
+            v-if="showPwdVisible"
+            @click="handlePasswordVisible"
+            class="el-icon-view"
+          ></i>
+          <!-- 计数 -->
+          <span v-if="isWordLimitVisible" class="lt-input__count">
+            <span class="lt-input__count-inner">
+              {{ textLength }} / {{ maxlength }}
+            </span>
           </span>
-        </span>
+        </div>
       </div>
       <!-- 后置元素 -->
-      <div v-if="$slots.append" class="lt-input_append">
+      <div v-if="$slots.append" class="lt-input-group__append">
         <slot name="append"></slot>
       </div>
     </template>
 
-    <textarea ref="textarea" v-else></textarea>
+    <textarea
+      ref="textarea"
+      class="lt-textarea__inner"
+      v-bind="attrs"
+      :tabindex="tabindex"
+      :readonly="readonly"
+      :autocomplete="autocomplete"
+      :disabled="inputDisabled"
+      @compositionstart="handleCompositionStart"
+      @compositionend="handleCompositionEnd"
+      @input="handleInput"
+      @focus="handleFocus"
+      @blur="handleBlur"
+      @change="handleChange"
+      @keydown="handleKeydown"
+      v-else
+    ></textarea>
   </div>
 </template>
 
@@ -68,6 +104,7 @@ import {
   nextTick,
   onMounted,
   watch,
+  shallowRef,
 } from "@vue/runtime-core";
 import { props } from "./props";
 import { UPDATE_MODEL_EVENT } from "@u/constant.ts";
@@ -83,6 +120,9 @@ export default defineComponent({
     "clear",
     "input",
     "change",
+    "keydown",
+    "focus",
+    "blur",
   ],
   setup(props, { emit, slots }) {
     const input = ref(null);
@@ -95,13 +135,35 @@ export default defineComponent({
     const hovering = ref(false);
     // 聚焦
     const focused = ref(false);
+    const passwordVisible = ref(false);
     const inputOrTextarea = computed(() => input.value || textarea.value);
+    const inputSize = computed(() => props.size);
+    const _textareaCalcStyle = shallowRef(props.inputStyle);
     // 原始输入的值
     const nativeInputValue = computed(() =>
       props.modelValue === null || props.modelValue === undefined
         ? ""
         : String(props.modelValue)
     );
+
+    // textarea的样式
+    const computedTextareaStyle = computed(() => {
+      return {
+        ...props.inputStyle,
+        ..._textareaCalcStyle.value,
+        resize: props.resize,
+      };
+    });
+
+    // 控制密码的显示隐藏
+    const showPwdVisible = computed(() => {
+      return (
+        props.showPassword &&
+        !inputDisabled.value &&
+        !props.readonly &&
+        (!!nativeInputValue.value || focused.value)
+      );
+    });
     // 控制后置内容是否展示
     const getSuffixVisible = () => {
       return (
@@ -192,7 +254,20 @@ export default defineComponent({
       emit("focus", event);
     };
 
+    // 改变值
+    const handleChange = (event) => {
+      emit("change", event.target.value);
+    };
+
     // 失焦
+    const handleBlur = (event) => {
+      focused.value = false;
+      emit("blur", event);
+      // TODO: form表单校验
+      // if(props.validateEvent) {
+
+      // }
+    };
 
     // 清空输入的内容
     const clear = () => {
@@ -200,6 +275,27 @@ export default defineComponent({
       emit("clear");
       emit("input", "");
       emit("change", "");
+    };
+
+    // 展示密码
+    const handlePasswordVisible = () => {
+      passwordVisible.value = !passwordVisible.value;
+      focus();
+    };
+
+    // 键盘按下事件
+    const handleKeydown = (e) => {
+      emit("keydown", e);
+    };
+
+    const focus = () => {
+      nextTick(() => {
+        inputOrTextarea.value.focus();
+      });
+    };
+
+    const blur = () => {
+      inputOrTextarea.value.blur();
     };
 
     // 鼠标经过事件
@@ -237,14 +333,22 @@ export default defineComponent({
       handleCompositionEnd,
       handleInput,
       handleFocus,
+      handleBlur,
+      handleChange,
       nativeInputValue,
       isWordLimitVisible,
+      showPwdVisible,
       getSuffixVisible,
       onMouseEnter,
       onMouseLeave,
       showClear,
       clear,
       inputDisabled,
+      inputSize, // input的尺寸
+      passwordVisible, // 标志密码是否可见
+      handlePasswordVisible,
+      handleKeydown,
+      computedTextareaStyle,
     };
   },
 });

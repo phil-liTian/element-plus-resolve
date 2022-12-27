@@ -25,9 +25,9 @@
     <!-- <CheckboxTest></CheckboxTest> -->
     <!-- <RateTest></RateTest> -->
     <!-- <LoadingTest></LoadingTest> -->
-    <TabTest></TabTest>
+    <!-- <TabTest></TabTest> -->
     <!-- <BreadTest></BreadTest> -->
-    <!-- <InputTest></InputTest> -->
+    <InputTest></InputTest>
   </div>
 </template>
 
@@ -58,9 +58,9 @@ import { defineComponent } from "@vue/runtime-core";
 // import CheckboxTest from "@c/checkbox-test.vue";
 // import RateTest from "@c/rate-test.vue";
 // import LoadingTest from "@c/loading-test.vue";
-import TabTest from "@c/tab-test.vue";
+// import TabTest from "@c/tab-test.vue";
 // import BreadTest from "@c/bread-test.vue";
-// import InputTest from "@c/input-test.vue";
+import InputTest from "@c/input-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -90,9 +90,9 @@ export default defineComponent({
     // CheckboxTest,
     // RateTest,
     // LoadingTest,
-    TabTest,
+    // TabTest,
     // BreadTest,
-    // InputTest,
+    InputTest,
   },
 
   setup() {
