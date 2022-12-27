@@ -4,6 +4,7 @@ import message from "@c/lt-base/lt-message/message.ts";
 import notify from "@c/lt-base/lt-notify/notify.ts";
 import ltLoading from "./lt-loading/ltloading";
 import myLoading from "./lt-loading/directive";
+import myInfiniteScroll from "./lt-infinite-scroll/lt-infinite-scroll";
 
 const requireComponent = require.context("./", true, /\.vue$/);
 
@@ -13,6 +14,7 @@ const install = (app) => {
   app.config.globalProperties.$ltLoading = ltLoading;
 
   app.directive("myLoading", myLoading);
+  app.directive("myInfiniteScroll", myInfiniteScroll);
 
   requireComponent.keys().forEach((fileName) => {
     const config = requireComponent(fileName);

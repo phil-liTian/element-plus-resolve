@@ -27,7 +27,8 @@
     <!-- <LoadingTest></LoadingTest> -->
     <!-- <TabTest></TabTest> -->
     <!-- <BreadTest></BreadTest> -->
-    <InputTest></InputTest>
+    <!-- <InputTest></InputTest> -->
+    <InfiniteScrollTest></InfiniteScrollTest>
   </div>
 </template>
 
@@ -60,7 +61,8 @@ import { defineComponent } from "@vue/runtime-core";
 // import LoadingTest from "@c/loading-test.vue";
 // import TabTest from "@c/tab-test.vue";
 // import BreadTest from "@c/bread-test.vue";
-import InputTest from "@c/input-test.vue";
+// import InputTest from "@c/input-test.vue";
+import InfiniteScrollTest from "@c/infinite-scroll-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -92,7 +94,8 @@ export default defineComponent({
     // LoadingTest,
     // TabTest,
     // BreadTest,
-    InputTest,
+    // InputTest,
+    InfiniteScrollTest,
   },
 
   setup() {
