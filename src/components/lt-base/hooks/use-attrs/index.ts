@@ -34,7 +34,5 @@ export default (params: Params = {}) => {
     attrs.value = res;
   });
 
-  console.log("res", attrs);
-
   return attrs;
 };

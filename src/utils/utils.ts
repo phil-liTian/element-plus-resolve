@@ -33,4 +33,16 @@ export const entries = (obj) => {
   return Object.keys(obj).map((key: string) => [key, obj[key]]);
 };
 
+export const rafThrottle = (fn) => {
+  let locked = false;
+  return function (...args) {
+    if (locked) return;
+    locked = true;
+    window.requestAnimationFrame(() => {
+      fn.apply(this, args);
+      locked = false;
+    });
+  };
+};
+
 export { camelize };

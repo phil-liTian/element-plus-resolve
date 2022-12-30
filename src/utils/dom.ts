@@ -116,7 +116,7 @@ export const isScroll = (el: HTMLElement, isVertical: boolean): boolean => {
     ? getStyle(el, "overflow-y")
     : getStyle(el, "overflow-x");
 
-  return overflow.match(/(scroll|auto|overlay)/);
+  return overflow?.match(/(scroll|auto|overlay)/);
 };
 
 // 获取滚动的容器
@@ -139,4 +139,41 @@ export const getScrollContainer = (
   }
 
   return parent;
+};
+
+// 判断是否在容器里面
+export const isInContainer = (
+  el: HTMLElement,
+  container: HTMLElement
+): boolean => {
+  if (!el || !container) return false;
+
+  // 获取元素位置，用于获取某个元素的上下左右相对与浏览器视图的位置
+  const elRect = el.getBoundingClientRect();
+  console.log("elRect", elRect);
+  console.log("el", el);
+
+  let containerRect: Partial<DOMRect>;
+
+  // 容器是window或者document
+  if ([window, document, document.documentElement].includes(container)) {
+    containerRect = {
+      top: 0,
+      right: window.innerWidth,
+      bottom: window.innerHeight,
+      left: 0,
+    };
+  } else {
+    containerRect = container.getBoundingClientRect();
+  }
+
+  // console.log("elRect", elRect);
+  // console.log("containerRect", containerRect);
+
+  return (
+    elRect.top < containerRect.bottom &&
+    elRect.bottom > containerRect.top &&
+    elRect.right > containerRect.left &&
+    elRect.left < containerRect.right
+  );
 };
