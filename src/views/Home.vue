@@ -29,7 +29,8 @@
     <!-- <BreadTest></BreadTest> -->
     <!-- <InputTest></InputTest> -->
     <!-- <InfiniteScrollTest></InfiniteScrollTest> -->
-    <ImageTest></ImageTest>
+    <!-- <ImageTest></ImageTest> -->
+    <AffixTest></AffixTest>
   </div>
 </template>
 
@@ -64,7 +65,8 @@ import { defineComponent } from "@vue/runtime-core";
 // import BreadTest from "@c/bread-test.vue";
 // import InputTest from "@c/input-test.vue";
 // import InfiniteScrollTest from "@c/infinite-scroll-test.vue";
-import ImageTest from "@/components/image-test.vue";
+// import ImageTest from "@/components/image-test.vue";
+import AffixTest from "@/components/affix-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -98,7 +100,8 @@ export default defineComponent({
     // BreadTest,
     // InputTest,
     // InfiniteScrollTest,
-    ImageTest,
+    // ImageTest,
+    AffixTest,
   },
 
   setup() {
