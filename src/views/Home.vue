@@ -30,7 +30,8 @@
     <!-- <InputTest></InputTest> -->
     <!-- <InfiniteScrollTest></InfiniteScrollTest> -->
     <!-- <ImageTest></ImageTest> -->
-    <AffixTest></AffixTest>
+    <!-- <AffixTest></AffixTest> -->
+    <CarouselTest></CarouselTest>
   </div>
 </template>
 
@@ -66,7 +67,8 @@ import { defineComponent } from "@vue/runtime-core";
 // import InputTest from "@c/input-test.vue";
 // import InfiniteScrollTest from "@c/infinite-scroll-test.vue";
 // import ImageTest from "@/components/image-test.vue";
-import AffixTest from "@/components/affix-test.vue";
+// import AffixTest from "@/components/affix-test.vue";
+import CarouselTest from "@c/carousel-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -101,7 +103,8 @@ export default defineComponent({
     // InputTest,
     // InfiniteScrollTest,
     // ImageTest,
-    AffixTest,
+    // AffixTest,
+    CarouselTest,
   },
 
   setup() {

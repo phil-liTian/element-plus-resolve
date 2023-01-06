@@ -1,0 +1,139 @@
+@import '@s/mixins/mixins';
+@import '@s/mixins/_var';
+@import '@s/common/var';
+
+@include b(carousel) {
+  @include set-component-css-var('carousel', $--carousel)
+}
+
+@include b(carousel) {
+  position: relative;
+
+  @include m(horizontal) {
+    overflow-x: hidden;
+  }
+
+  @include m(vertical) {
+    overflow-y: hidden;
+  }
+
+  @include e(container) {
+    position: relative;
+    height: 300px;
+  }
+
+  @include e(arrow) {
+    position: absolute;
+    top: 50%;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    width: var(--lt-carousel-arrow-size);
+    height: var(--lt-carousel-arrow-size);
+    background-color: var(--lt-carousel-arrow-background);
+    border-radius: 50%;
+    z-index: 10;
+    cursor: pointer;
+    transform: translateY(-50%);
+    text-align: center;
+    font-size: var(--lt-carousel-arrow-font-size);
+    color: $--color-white;
+    transition: var(--lt-transition-duration);
+    
+
+    @include m(left) {
+      left: 16px;
+    }
+
+    @include m(right) {
+      right: 16px;
+    }
+
+    &:hover {
+      background-color: var(--lt-carousel-arrow-hover-background);
+    }
+  }
+
+  @include e(indicators) {
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include m(horizontal) {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @include m(outside) {
+      position: static;
+      bottom: calc(var(--lt-carousel-indicator-padding-vertical) * 2 + var(--lt-carousel-indicator-height));
+      transform: none;
+      text-align: center;
+      .lt-carousel__indicator:hover button {
+        opacity: .64;
+      }
+
+      button {
+        background-color: var(--lt-carousel-indicator-out-color);
+        opacity: .24;
+      }
+    }
+
+    @include m(labels) {
+      left: 0;
+      right: 0;
+      transform: none;
+      .lt-carousel__button {
+        height: auto;
+        width: auto;
+        padding: 2px 18px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  @include e(indicator) {
+    background-color: transparent;
+    cursor: pointer;
+
+    @include m(horizontal) {
+      display: inline-block;
+      padding: var(--lt-carousel-indicator-padding-vertical) var(--lt-carousel-indicator-padding-horizontal);
+    }
+
+    @include when(active) {
+      button {
+        opacity: 1;
+      }
+    }
+  }
+
+  @include e(button) {
+    display: block;
+    opacity: .48;
+    width: var(--lt-carousel-indicator-width);
+    height: var(--lt-carousel-indicator-height);
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #fff;
+  }
+}
+
+
+.carousel-arrow-left-enter-from,
+.carousel-arrow-left-leave-active {
+  transform: translateY(-50%) translateX(-10px);
+  opacity: 0;
+}
+
+.carousel-arrow-right-enter-from,
+.carousel-arrow-right-leave-acitve {
+  transform: translateY(-50%) translateX(10px);
+  opacity: 0;
+}

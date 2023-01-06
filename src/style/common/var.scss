@@ -778,3 +778,20 @@ $--input-number-width: map.merge(
   ),
   $--input-number-width
 );
+
+// carousel
+$--carousel: () !default;
+$--carousel: map.merge(
+  (
+    'arrow-font-size': 12px,
+    'arrow-size': 36px,
+    'arrow-background': rgba(31, 45, 61, 0.11),
+    'arrow-hover-background': rgba(31, 45, 61, 0.23),
+    'indicator-width': 30px,
+    'indicator-height': 2px,
+    'indicator-padding-horizontal': 4px,
+    'indicator-padding-vertical': 12px,
+    'indicator-out-color': var(--lt-border-color-hover),
+  ),
+  $--carousel
+);

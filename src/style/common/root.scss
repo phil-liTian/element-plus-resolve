@@ -26,6 +26,11 @@
 
   --lt-border-width-base: 1px;
   --lt-border-style-base: solid;
+  --lt-border-color-hover: var(--lt-text-color-placeholder);
+
+
+  // zIndex
+  --lt-index-normal: 1;
 
   // border-radius
   @each $size in (base, small, round, circle) {

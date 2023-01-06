@@ -1,0 +1,40 @@
+@import '@s/mixins/mixins';
+@import '@s/common/var';
+
+@include b(carousel) {
+  @include e(item) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: calc(var(--lt-index-normal) - 1);
+
+    @include when(animating) {
+      transition: transform .4s ease-in-out;
+    }
+
+    @include m(card) {
+      width: 50%;
+      transition: transform .4s ease-in-out; 
+
+      &.is-in-stage {
+        z-index: var(--lt-index-normal);
+        cursor: pointer;
+      }
+
+      &.is-active {
+        z-index: calc(var(--lt-index-normal) + 1);
+      }
+    }
+  }
+
+  @include e(mask) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: $--color-white;
+    opacity: .24;
+    transition: var(--el-transition-duration-fast);
+  }
+}
