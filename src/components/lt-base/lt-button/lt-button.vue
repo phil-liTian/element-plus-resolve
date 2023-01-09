@@ -4,8 +4,14 @@
       'lt-button',
       type ? `lt-button--${type}` : '',
       buttonSize && `lt-button--${buttonSize}`,
+      {
+        'is-round': round,
+        'is-circle': circle,
+        'is-disabled': buttonDisabled,
+      },
     ]"
     :disabled="buttonDisabled"
+    :type="nativeType"
     @click="handleClick"
   >
     <span v-if="$slots.default"><slot></slot></span>
@@ -21,7 +27,6 @@ export default defineComponent({
   name: "LtButton",
   props,
   emits: ["click"],
-
   setup(props, { emit }) {
     const $ELEMENT = useGlobalConfig();
 

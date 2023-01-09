@@ -31,14 +31,15 @@
     <!-- <InfiniteScrollTest></InfiniteScrollTest> -->
     <!-- <ImageTest></ImageTest> -->
     <!-- <AffixTest></AffixTest> -->
-    <CarouselTest></CarouselTest>
+    <!-- <CarouselTest></CarouselTest> -->
+    <CalendarTest></CalendarTest>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 // import CardTest from "@c/card-test.vue";
-// import ButtonTest from "@c/button-test.vue";
+import ButtonTest from "@c/button-test.vue";
 // import ResultTest from "@c/result-test.vue";
 // import TagTest from "@c/tag-test.vue";
 // import SwitchTest from "@c/switch-test.vue";
@@ -68,7 +69,8 @@ import { defineComponent } from "@vue/runtime-core";
 // import InfiniteScrollTest from "@c/infinite-scroll-test.vue";
 // import ImageTest from "@/components/image-test.vue";
 // import AffixTest from "@/components/affix-test.vue";
-import CarouselTest from "@c/carousel-test.vue";
+// import CarouselTest from "@c/carousel-test.vue";
+import CalendarTest from "@c/calendar-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -104,7 +106,8 @@ export default defineComponent({
     // InfiniteScrollTest,
     // ImageTest,
     // AffixTest,
-    CarouselTest,
+    // CarouselTest,
+    CalendarTest,
   },
 
   setup() {

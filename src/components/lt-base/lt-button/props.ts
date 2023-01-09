@@ -6,7 +6,7 @@ type IButtonType = PropType<
 >;
 
 // type ComponentSize = "small" | "default" | "large";
-
+type IButtonNativeType = "submit" | "reset" | "button";
 export interface IButtonProps {
   type?: IButtonType;
   size?: PropType<ComponentSize>;
@@ -20,7 +20,7 @@ export interface IButtonProps {
 export const props = {
   type: {
     type: String as IButtonType,
-    default: "primary",
+    default: "",
     validator: (val: string) => {
       return [
         "primary",
@@ -30,15 +30,23 @@ export const props = {
         "info",
         "text",
         "danger",
+        "",
       ].includes(val);
     },
   },
 
   size: {
     type: String as PropType<ComponentSize>,
-    default: "small",
     validator: isValidateComponentSize,
   },
+
+  nativeType: {
+    type: String as PropType<IButtonNativeType>,
+    default: "button",
+  },
+
+  round: Boolean,
+  circle: Boolean,
 
   disabled: Boolean,
 };

@@ -201,6 +201,7 @@ $--button: map.merge(
     'font-color': var(--lt-text-color-regular),
     'border-color': var(--lt-border-color-base),
     'font-weight': var(--lt-font-weight-primary),
+    'divide-border-color': rgba($--color-white, 0.5),
   ),
   $--button
 );
@@ -794,4 +795,16 @@ $--carousel: map.merge(
     'indicator-out-color': var(--lt-border-color-hover),
   ),
   $--carousel
+);
+
+// calendar
+$--calendar: () !default;
+$--calendar: map.merge(
+  (
+    'border': var(--lt-table-border, 1px solid var(--lt-border-color-lighter)),
+    'header-border-bottom': var(--lt-calendar-border),
+    'selected-background-color': #f2f8fe,
+    'cell-width': 85px,
+  ),
+  $--calendar
 );

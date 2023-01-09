@@ -8,7 +8,9 @@
 
 @include b(button) {
   @include set-component-css-var('button', $--button);
-  
+}
+
+@include b(button) {
   display: inline-block;
   line-height: 1;
   cursor: pointer;
@@ -32,6 +34,27 @@
     map.get($--button-font-size, 'default'),
     map.get($--button-border-radius, 'default'),
   );
+
+  &:hover,
+  &:focus {
+    color: var(--lt-color-primary);
+    border-color: var(--lt-color-primary-light-7);
+    background-color: var(--lt-color-primary-light-9);
+    outline: none;
+  }
+
+  @include when(round) {
+    border-radius: var(--lt-border-radius-round);
+  }
+
+  @include when(circle) {
+    border-radius: 50%;
+  }
+
+  @include when(disabled) {
+    
+  }
+
 
   @each $type in (primary, success, danger, info, warning) {
     @include m($type) {

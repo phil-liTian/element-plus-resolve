@@ -1,9 +1,21 @@
 <template>
   <div>
-    <el-button @click="onClick" type="primary">Primary</el-button>
-    <lt-button type="info" size="medium" @click="handleClick"
-      >phil todo</lt-button
-    >
+    <el-button-group>
+      <el-button @click="onClick" type="primary">Primary</el-button>
+      <el-button @click="onClick" type="primary">Primary</el-button>
+      <el-button @click="onClick" type="primary">Primary</el-button>
+    </el-button-group>
+    <hr />
+    <lt-button-group>
+      <lt-button size="mini" plain @click="handleClick">Primary</lt-button>
+      <lt-button @click="handleClick">Primary</lt-button>
+      <lt-button @click="handleClick">Primary</lt-button>
+    </lt-button-group>
+    <hr />
+
+    <el-button disabled>el primary</el-button>
+
+    <lt-button disabled>primary</lt-button>
   </div>
 </template>
 
