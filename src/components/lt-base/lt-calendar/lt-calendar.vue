@@ -2,7 +2,7 @@
   <div class="lt-calendar">
     <div class="lt-calendar__header">
       <div class="lt-calendar__title">{{ iDate }}</div>
-      <div class="lt-calendar__button-group">
+      <div v-if="!validateRange.length" class="lt-calendar__button-group">
         <lt-button-group>
           <lt-button size="mini" @click="selectDate('prev-month')"
             >prevMonth</lt-button

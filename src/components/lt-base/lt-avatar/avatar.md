@@ -1,0 +1,1 @@
+# 对size的特殊处理，size可以是String或者是Number类型，在使用计算属性的时候，可判断size的值类型

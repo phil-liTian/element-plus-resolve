@@ -1,0 +1,41 @@
+@import '@s/mixins/mixins';
+@import '@s/common/var';
+@import '@s/mixins/_var';
+
+
+@include b(avatar) {
+  @include set-component-css-var('avatar', $--avatar);
+}
+
+
+@include b(avatar) {
+  display: inline-block;
+  width: var(--lt-avatar-large-size);
+  height: var(--lt-avatar-large-size);
+  overflow: hidden;
+
+  >img {
+    display: block;
+    height: 100%;
+  }
+
+  @include m(circle) {
+    border-radius: 50%;
+  }
+
+  @include m(square) {
+    border-radius: var(--lt-avatar-border-radius);
+  }
+
+  @include m(icon) {
+    font-size: var(--lt-avatar-icon-font-size);
+  }
+
+  @each $size in (small, medium, large) {
+    @include m($size) {
+      width: var(--lt-avatar-#{$size}-size);
+      height: var(--lt-avatar-#{$size}-size);
+      line-height: var(--lt-avatar-#{$size}-size);
+    }
+  }
+}

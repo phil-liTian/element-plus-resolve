@@ -808,3 +808,20 @@ $--calendar: map.merge(
   ),
   $--calendar
 );
+
+// avatar
+
+$--avatar: () !default;
+$--avatar: map.merge(
+  (
+    'font-color': #fff,
+    'background-color': #c0c4cc,
+    'text-font-size': 14px,
+    'icon-font-size': 18px,
+    'border-radius': var(--lt-border-radius-base),
+    'large-size': 40px,
+    'medium-size': 36px,
+    'small-size': 28px,
+  ),
+  $--avatar
+);
