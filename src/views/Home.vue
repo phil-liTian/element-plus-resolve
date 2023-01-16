@@ -33,7 +33,8 @@
     <!-- <AffixTest></AffixTest> -->
     <!-- <CarouselTest></CarouselTest> -->
     <!-- <CalendarTest></CalendarTest> -->
-    <AvatarTest></AvatarTest>
+    <!-- <AvatarTest></AvatarTest> -->
+    <TransferTest></TransferTest>
   </div>
 </template>
 
@@ -72,7 +73,8 @@ import { defineComponent } from "@vue/runtime-core";
 // import AffixTest from "@/components/affix-test.vue";
 // import CarouselTest from "@c/carousel-test.vue";
 // import CalendarTest from "@c/calendar-test.vue";
-import AvatarTest from "@/components/avatar-test.vue";
+// import AvatarTest from "@/components/avatar-test.vue";
+import TransferTest from "@/components/transfer-test.vue";
 export default defineComponent({
   name: "Home",
 
@@ -110,7 +112,8 @@ export default defineComponent({
     // AffixTest,
     // CarouselTest,
     // CalendarTest,
-    AvatarTest,
+    // AvatarTest,
+    TransferTest,
   },
 
   setup() {

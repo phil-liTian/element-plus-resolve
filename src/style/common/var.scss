@@ -825,3 +825,20 @@ $--avatar: map.merge(
   ),
   $--avatar
 );
+
+// transfer
+$--transfer: () !default;
+$--transfer: map.merge(
+  (
+    'border-color': var(--lt-border-color-lighter),
+    'border-radius': var(--lt-border-radius-base),
+    'panel-width': 200px,
+    'panel-header-height': 40px,
+    'panel-header-background-color': var(--lt-background-color-base),
+    'panel-footer-height': 40px,
+    'panel-body-height': 246px,
+    'item-height': 30px,
+    'filter-height': 32px,
+  ),
+  $--transfer
+);

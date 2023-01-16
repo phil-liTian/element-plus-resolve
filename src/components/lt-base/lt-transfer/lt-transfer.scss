@@ -1,0 +1,101 @@
+@import '@s/mixins/mixins';
+@import '@s/mixins/_var';
+@import '@s/common/var';
+
+
+@include b(transfer) {
+  @include set-component-css-var('transfer', $--transfer)
+}
+
+@include b(transfer) {
+  font-size: var(--lt-font-size-base);
+
+  @include e(buttons) {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 30px;
+  }
+}
+
+@include b(transfer-panel) {
+  display: inline-block;
+  width: var(--lt-transfer-panel-width);
+  border: 1px solid var(--lt-transfer-border-color);
+  vertical-align: middle;
+  box-sizing: border-box;
+
+  @include e(header) {
+    height: var(--lt-transfer-panel-header-height);
+    line-height: var(--lt-transfer-panel-header-height);
+    background: var(--lt-transfer-panel-header-background-color);
+    margin: 0;
+    display: flex;
+    padding-left: 15px;
+    border-bottom: 1px solid var(--lt-transfer-border-color);
+    box-sizing: border-box;
+    color: var(--lt-color-black);
+
+    .lt-checkbox {
+      display: flex;
+      align-items: center;
+      line-height: 40px;
+      width: 100%;
+      .lt-checkbox__label {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding-right: 15px;
+
+        >span {
+          color: var(--lt-text-color-secondary);
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  @include e(body) {
+    height: var(--lt-transfer-panel-body-height);
+  }
+
+  @include e(list) {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 6px 0;
+    height: var(--lt-transfer-panel-body-height);
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+
+  @include e(item) {
+    display: block;
+    height: var(--lt-transfer-item-height);
+    line-height: var(--lt-transfer-item-height);
+    padding-left: 15px;
+
+    &.lt-checkbox {
+      color: var(--lt-text-color-regular);
+    }
+
+    &:hover {
+      color: var(--lt-color-primary);
+    }
+  }
+
+  @include e(filter) {
+    margin: 15px;
+    display: block;
+    box-sizing: border-box;
+    width: auto;
+  }
+
+  @include e(empty) {
+    height: var(--lt-transfer-item-height);
+    line-height: var(--lt-transfer-item-height);
+    text-align: center;
+    color: var(--lt-text-color-secondary);
+    padding: 6px 15px 0;
+    margin: 0;
+  }
+}
