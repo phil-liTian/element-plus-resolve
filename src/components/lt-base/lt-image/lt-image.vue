@@ -186,7 +186,7 @@ export default defineComponent({
         console.log("key", key);
       });
 
-      img.src = props.src;
+      img.src = props.src as string;
     };
 
     // 加载

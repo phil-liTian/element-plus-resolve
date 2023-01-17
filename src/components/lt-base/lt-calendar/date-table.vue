@@ -33,7 +33,6 @@ import localeData from "dayjs/plugin/localeData";
 import { rangeArr } from "../lt-time-picker/common/date-utils";
 import dayjs, { Dayjs } from "dayjs";
 import { dateTableProps } from "./calendar";
-import { log } from "console";
 dayjs.extend(localeData);
 
 // 获取上个月的最后几天
@@ -58,7 +57,7 @@ export default defineComponent({
   name: "DateTable",
   props: dateTableProps,
   emits: ["pick"],
-  setup(props, { emit }) {
+  setup(props: any, { emit }) {
     const now = dayjs();
 
     const WEEK_DAYS = ref(dayjs().localeData().weekdaysShort()); // 周几的英文缩略名称

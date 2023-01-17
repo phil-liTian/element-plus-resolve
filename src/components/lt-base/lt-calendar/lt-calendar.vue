@@ -52,7 +52,7 @@ export default defineComponent({
   name: "LtCalendar",
   components: { DateTable },
   props,
-  setup(props, { emit }) {
+  setup(props: any, { emit }) {
     const { t } = useLocalInject();
     const selectedDay = ref(null);
     const now = dayjs();

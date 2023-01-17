@@ -42,25 +42,25 @@ export const transferProps = {
   // 穿梭框标题
   titles: {
     type: Array as PropType<any> as PropType<[string, string]>,
-    default: () => ['list1', 'list2']
+    default: () => ["list1", "list2"],
   },
   // 按钮文案
   buttonTexts: {
     type: Array as PropType<any> as PropType<[string, string]>,
-    default: () => []
+    default: () => [],
   },
 
   // 搜索占位符
   filterPlaceholder: {
     type: String,
-    default: '请输入'
+    default: "请输入",
   },
 
   // 筛选函数
   filterMethod: Function as PropType<(query, item) => boolean>,
 
   leftDefaultChecked: Array,
-  rightDefaultChecked: Array
+  rightDefaultChecked: Array,
 };
 
 // transfer-panel
@@ -74,5 +74,5 @@ export const panelProps = {
   filterMethod: Function,
   placeholder: String,
   props: Object,
-  defaultChecked: Array
+  defaultChecked: Array,
 };

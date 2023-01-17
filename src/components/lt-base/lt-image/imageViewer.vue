@@ -100,12 +100,12 @@ export default defineComponent({
   name: "ImageViewer",
   props: imageViewerProps,
   emits: [CLOSE_EVENT, SWITCH_EVENT],
-  setup(props, { emit }) {
+  setup(props: any, { emit }) {
     let _keyDownHandler = null; // 键盘按下事件
     let _mouseWheelHandler = null; // 滑轮滚动事件
     let _dragHandler = null; // 拖拽事件
 
-    const index = ref(props.initialIndex);
+    const index = ref<number>(props.initialIndex);
     const mode = ref(Mode.CONTAIN);
     const wrapper = ref(null);
     const loading = ref(true);
@@ -139,7 +139,7 @@ export default defineComponent({
 
     // 是否只有一张图片
     const isSingle = computed(() => {
-      return props.urlList.length <= 1;
+      return props.urlList?.length <= 1;
     });
 
     // 是否是第一个
@@ -148,18 +148,18 @@ export default defineComponent({
     });
     // 是否是最后一个
     const isLast = computed(() => {
-      return index.value === props.urlList.length - 1;
+      return index.value === props.urlList?.length - 1;
     });
     // 上一个
     const prev = () => {
       if (!props.infinite && isFirst.value) return;
-      const len = props.urlList.length;
+      const len = props.urlList?.length;
       index.value = (index.value - 1 + len) % len;
     };
     // 下一个
     const next = () => {
       if (!props.infinite && isLast.value) return;
-      const len = props.urlList.length;
+      const len = props.urlList?.length;
       index.value = (index.value + 1) % len;
     };
     // 关闭modal

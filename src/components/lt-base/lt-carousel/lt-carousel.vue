@@ -70,7 +70,7 @@ export default defineComponent({
   name: "LtCarousel",
   props,
   emits: ["change"],
-  setup(props, { emit }) {
+  setup(props: any, { emit }) {
     const state = reactive({
       activeIndex: -1, // 当activeIndex初始化变成0的时候，触发watch
       hover: false,

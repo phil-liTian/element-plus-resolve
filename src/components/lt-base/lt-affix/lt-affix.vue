@@ -45,9 +45,9 @@ export default defineComponent({
     },
   },
   emits: ["change", "scroll"],
-  setup(props, { emit }) {
+  setup(props: any, { emit }) {
     // 固定的目标区域
-    const target = ref(null);
+    const target = ref<HTMLElement>(null);
     const root = ref(null);
     // 滚动容器
     const scrollContainer = ref(null);
@@ -102,7 +102,8 @@ export default defineComponent({
         // 顶部固定
         if (props.target) {
           // TODO: 指定了target
-          const difference = targetRect.bottom - props.offset - state.height;
+          const _bottom = targetRect.bottom;
+          const difference = _bottom - props.offset - state.height;
           state.fixed = props.offset > rootRect.top && targetRect.bottom > 0;
           state.transform = difference < 0 ? difference : 0;
         } else {
