@@ -10,8 +10,6 @@ export const useComputedData = (props) => {
     }, {});
   });
 
-  // console.log("dataObj", dataObj.value);
-
   const sourceData = computed(() => {
     return props.data.filter(
       (item) => !props.modelValue.includes(item[propsKey.value])
@@ -31,7 +29,6 @@ export const useComputedData = (props) => {
         if (value) {
           pre.push(value);
         }
-
         return pre;
       }, []);
     }
